@@ -11,12 +11,12 @@ import UIKit
 
 class Subject {
     var Id: Int32?
-    var Img: UIImage?
+    var Img: String? = ""
     var Title: String?
     var Abstract:String?
     var Content:SubjectDetailContent?
     
-    init(id: Int32?, img: UIImage?, title: String?, abstract: String?, content: SubjectDetailContent?) {
+    init(id: Int32?, img: String?, title: String?, abstract: String?, content: SubjectDetailContent?) {
         self.Id = id
         self.Img = img
         self.Title = title
@@ -37,17 +37,7 @@ class Subject {
             return
         }
         self.Id = (data?.objectForKey("Id") as! NSNumber).intValue
-        var img = data?.objectForKey("Img") as! String
-        var nsd = NSData(contentsOfURL: NSURL(string: img)!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
-        if nsd != nil {
-            self.Img = UIImage(data: nsd!)
-        } else {
-            UIGraphicsBeginImageContext(CGSize(width: 50, height: 50))
-            CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), UIColor.lightGrayColor().CGColor)
-            UIRectFill(CGRect(x: 0, y: 0, width: 50, height: 50))
-            self.Img = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-        }
+        self.Img = data?.objectForKey("Img") as? String
         self.Title = data?.objectForKey("Title") as? String
         self.Abstract = data?.objectForKey("Abstract")as? String
         self.Content = SubjectDetailContent(data: data?.objectForKey("Content"))

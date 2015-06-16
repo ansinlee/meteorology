@@ -40,20 +40,12 @@ class PediaDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = NavBarBackgroudColor
+        self.view.backgroundColor = UIColor.whiteColor()
         self.title = "详情"
         
         // 添加主景
         self.mainView = UIScrollView(frame: CGRect(x: -1, y: UIApplication.sharedApplication().statusBarFrame.height + self.navigationController!.navigationBar.frame.height, width: self.view.frame.width+2, height: self.view.frame.height - UIApplication.sharedApplication().statusBarFrame.height - self.navigationController!.navigationBar.frame.height - BottomNavBarHeight))
-        // 加圆角
-        self.mainView?.layer.cornerRadius = MainCornerRadius
-        self.mainView?.layer.masksToBounds = true
-        self.mainView?.backgroundColor = UIColor.whiteColor()
-        // 去掉滑动条
-        self.mainView?.showsVerticalScrollIndicator = false
-        // 加蓝色边框
-        self.mainView?.layer.borderWidth = MainBorderWidth
-        self.mainView?.layer.borderColor = NavBarBackgroudColor.CGColor
+
         self.view.addSubview(self.mainView!)
         
         // 添加标题
@@ -152,23 +144,26 @@ class PediaDetailViewController: UIViewController {
     func loadDetailContent() {
         NSLog("详情 : \(self.subject?.Title)")
         //定义获取json数据的接口地址，这里定义的是获取天气的API接口,还有一个好处，就是swift语句可以不用强制在每条语句结束的时候用";"
-        var id:Int32 = self.subject!.Id!
-        var url = NSURL(string:GetUrl("/subject/\(id)"))
-        //获取JSON数据
-        var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
-        var json:AnyObject = NSJSONSerialization.JSONObjectWithData(data!,options:NSJSONReadingOptions.AllowFragments,error:nil)!
-        
-        //解析获取JSON字段值
-        var errcode:NSNumber = json.objectForKey("errcode") as! NSNumber //json结构字段名。
-        var errmsg:String? = json.objectForKey("errmsg") as? String
-        var retdata:NSDictionary? = json.objectForKey("data") as? NSDictionary
-        NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
-        
-        if errcode == 0 {
-            self.subject?.Content = SubjectDetailContent(data: retdata?.objectForKey("Content"))
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
+            var id:Int32 = self.subject!.Id!
+            var url = NSURL(string:GetUrl("/subject/\(id)"))
+            //获取JSON数据
+            var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
+            var json:AnyObject = NSJSONSerialization.JSONObjectWithData(data!,options:NSJSONReadingOptions.AllowFragments,error:nil)!
+            
+            //解析获取JSON字段值
+            var errcode:NSNumber = json.objectForKey("errcode") as! NSNumber //json结构字段名。
+            var errmsg:String? = json.objectForKey("errmsg") as? String
+            var retdata:NSDictionary? = json.objectForKey("data") as? NSDictionary
+            NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
+            
+            if errcode == 0 {
+                self.subject?.Content = SubjectDetailContent(data: retdata?.objectForKey("Content"))
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.addContentView()
+            }
         }
-
-        self.addContentView()
     }
 
     /*

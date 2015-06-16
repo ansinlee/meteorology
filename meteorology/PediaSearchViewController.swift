@@ -10,7 +10,6 @@ import UIKit
 
 class PediaSearchViewController: UIViewController, UISearchBarDelegate {
     var searchBar: UISearchBar?
-    var searchView: PediaListView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,13 +70,13 @@ class PediaSearchViewController: UIViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         self.searchBar?.resignFirstResponder()
         var query = self.searchBar?.text
-        self.searchView?.searchData(query!)
+        //self.searchView?.searchData(query!)
     }
     
     func addSearchResultView() {
-        self.searchView = PediaListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        self.searchView?.parentVC = self
-        self.view.addSubview(self.searchView!)
+       // self.searchView = PediaListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        //self.searchView?.parentVC = self
+        //self.view.addSubview(self.searchView!)
     }
     
     override func didReceiveMemoryWarning() {

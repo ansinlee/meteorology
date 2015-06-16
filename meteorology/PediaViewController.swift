@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PediaViewController: UIViewController {
+class PediaViewController: UITableViewController {
 
     let searchBtnWidth:CGFloat = 33
     let searchBtnHeight:CGFloat = 32
@@ -18,109 +18,194 @@ class PediaViewController: UIViewController {
     let btnWidth:CGFloat = 50
     let btnHeight:CGFloat = 40
     
-    var classListView:PediaListView?
+    var collectionView:UICollectionView!
+    
+    var activityIndicator:UIActivityIndicatorView!
+    
+    var currentDataSource:[Subject] = []
+    
+    var currentSelectPedia = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.title = "气象百科"
-        
-        // 打开子返回只有一个箭头
-        var backButtonBar = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backButtonBar
-        
-        // 设置导航字体为白色
-        self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(),
-            forKey:NSForegroundColorAttributeName) as [NSObject : AnyObject]
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Default
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.barTintColor = NavBarBackgroudColor
-        
-        // 设置背景色
-        self.view.backgroundColor = NavBarBackgroudColor
-        
-        // 添加搜索按钮
-        self.initSearchButton()
-        
-        // 添加分类导航条
-        self.initclassNavBar()
-        
-        // 添加列表页
-        self.initClassListView()
-        
-        // 禁用自动布局
-        self.automaticallyAdjustsScrollViewInsets = false
-        
-    }
-
-    // 搜索按钮
-    func initSearchButton() {
-        var searchBtn: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-        searchBtn.frame = CGRectMake(0, 0, searchBtnWidth, searchBtnHeight)
-        searchBtn.setBackgroundImage(UIImage(named:"btn_search.png"), forState: UIControlState.Normal)
-        searchBtn.addTarget(self, action: "searchBtnClicked:", forControlEvents: UIControlEvents.TouchUpInside)
-        var item = UIBarButtonItem(customView: searchBtn)
-        self.navigationItem.rightBarButtonItem = item
-    }
-    
-    // 搜索按钮点击事件
-    func searchBtnClicked(btn: UIButton) {
-        var searchVC = PediaSearchViewController()
-        self.navigationController?.pushViewController(searchVC, animated: true)
-    }
-    
-    // 分类导航条
-    func initclassNavBar() {
-        var navBar = UIScrollView(frame: CGRect(x: 0, y: UIApplication.sharedApplication().statusBarFrame.height + self.navigationController!.navigationBar.frame.height, width: kScreenWidth, height: btnHeight))
-        navBar.backgroundColor = UIColor.clearColor()
-        navBar.showsHorizontalScrollIndicator = false
-        //navBar.userInteractionEnabled = true
-        //navBar.panGestureRecognizer.delaysTouchesBegan = true
-        
-        var classesList:[Class] = GetClassesList()
-        for i in 0..<classesList.count {
-            var btn = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-            btn.frame = CGRectMake(CGFloat(i)*btnWidth, 0, btnWidth, btnHeight)
-            btn.tag = 200 + Int(classesList[i].Id)
-            btn.backgroundColor = UIColor.whiteColor()
-            btn.setTitleColor(NavBarBackgroudColor, forState: UIControlState.Normal)
-            btn.setTitle(classesList[i].Name, forState: UIControlState.Normal)
-            btn.addTarget(self, action: "classNavBtnClicked:", forControlEvents: UIControlEvents.TouchUpInside)
-            navBar.addSubview(btn)
+        self.initHeaderView()
+        tableView.tableFooterView = UIView()
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityIndicator.center = CGPoint(x: tableView.frame.width/2, y: tableView.frame.height/2)
+        self.tableView.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        self.tableView.addSubview(activityIndicator)
+        PediaListProvider.loadPediaData(currentSelectPedia+1) {
+            subjects in
+            self.activityIndicator.hidden = true
+            self.currentDataSource = subjects
+            self.tableView.reloadData()
         }
+        var leftSwipe = UISwipeGestureRecognizer(target: self, action: "swipeLeft")
+        leftSwipe.direction = .Left
+        self.tableView.addGestureRecognizer(leftSwipe)
+        var rightSwipe = UISwipeGestureRecognizer(target: self, action: "swipeRight")
+        rightSwipe.direction = .Right
+        self.tableView.addGestureRecognizer(rightSwipe)
+    }
+    
+    func initHeaderView() {
+        let flowLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.itemSize = CGSizeMake(60, 30)
+        flowLayout.scrollDirection = .Horizontal
+        collectionView = UICollectionView(frame: CGRectMake(0, 0, tableView.frame.size.width, 30), collectionViewLayout: flowLayout)
+        collectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "cell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor.whiteColor()
+        self.tableView.tableHeaderView = collectionView
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        println(self.tableView.contentOffset)
+        self.collectionView.frame = CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y+64, self.tableView.frame.width, 30)
+    }
+    
+    // MARK: control methods
+    
+    @IBAction func onRefresh(sender: UIRefreshControl) {
+        sender.endRefreshing()
+    }
+    
+    @IBAction func onSearch(sender: AnyObject) {
         
-        navBar.contentSize = CGSizeMake(btnWidth*CGFloat(classesList.count), btnHeight)
-        //navBar.setContentOffset(CGPointMake(0, 0), animated: true)
-        self.view.addSubview(navBar)
     }
     
-    // 分类导航按钮点击事件
-    func classNavBtnClicked(btn: UIButton) {
-        classListView!.loadListData(btn.tag - 200)
+    func swipeRight() {
+        self.refreshControl?.endRefreshing()
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        if currentSelectPedia > 0 {
+            currentSelectPedia--
+            collectionView.reloadData()
+            PediaListProvider.loadPediaData(currentSelectPedia+1) {
+                subjects in
+                self.activityIndicator.hidden = true
+                self.currentDataSource = subjects
+                self.tableView.reloadData()
+            }
+        }
     }
     
-    func initClassListView() {
-        classListView = PediaListView(frame: CGRect(x: 0, y: UIApplication.sharedApplication().statusBarFrame.height + self.navigationController!.navigationBar.frame.height + btnHeight, width: kScreenWidth, height: self.view.frame.height - (UIApplication.sharedApplication().statusBarFrame.height + self.navigationController!.navigationBar.frame.height + btnHeight + btnHeight)))
-        classListView?.parentVC = self
-        self.view.addSubview(classListView!)
-        classListView!.loadListData(1);
+    func swipeLeft() {
+        self.refreshControl?.endRefreshing()
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        if currentSelectPedia < PediaListProvider.Classes.count - 1 {
+            currentSelectPedia++
+            collectionView.reloadData()
+            PediaListProvider.loadPediaData(currentSelectPedia+1) {
+                subjects in
+                self.activityIndicator.hidden = true
+                self.currentDataSource = subjects
+                self.tableView.reloadData()
+            }
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: tabelview delegate
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.currentDataSource.count
     }
     
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? UITableViewCell {
+            let subject = currentDataSource[indexPath.row]
+            if subject.Img == nil {
+                (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+            }
+            dispatch_async(dispatch_get_global_queue(0, 0)) {
+                var data = NSData(contentsOfURL: NSURL(string: subject.Img!)!)
+                dispatch_async(dispatch_get_main_queue()) {
+                    if data != nil {
+                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(data: data!)
+                    } else {
+                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+                    }
+                }
+            }
+            (cell.viewWithTag(2) as! UILabel).text = subject.Title
+            (cell.viewWithTag(3) as! UILabel).text = subject.Abstract
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+            return cell
+        }
+        return UITableViewCell()
     }
-    */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        if indexPath.row < currentDataSource.count {
+            let subject = currentDataSource[indexPath.row]
+            let detailVC = PediaDetailViewController(subject: subject)
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
+   
+}
 
+// MARK: 给上面的标题栏提供的样式
+
+extension PediaViewController:UICollectionViewDelegate,UICollectionViewDataSource {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return PediaListProvider.Classes.count
+    }
+    
+    // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as? UICollectionViewCell {
+            var underLine:UIView? = cell.viewWithTag(2)
+            if underLine == nil {
+                underLine = UIView(frame: CGRectMake(0, 28, 60, 2))
+                underLine!.backgroundColor = UIColor.redColor()
+                underLine!.hidden = true
+                underLine!.tag = 2
+                cell.addSubview(underLine!)
+            }
+            var label:UILabel? = cell.viewWithTag(1) as? UILabel
+            if label == nil {
+                label = UILabel(frame: CGRectMake(0, 0, 60, 30))
+                label!.textColor = UIColor.darkTextColor()
+                label!.tag = 1
+                label!.textAlignment = .Center
+                cell.addSubview(label!)
+            }
+            label!.text = PediaListProvider.Classes[indexPath.item]
+            if currentSelectPedia == indexPath.item {
+                label!.font = UIFont.boldSystemFontOfSize(14)
+                underLine?.hidden = false
+            } else {
+                label!.font = UIFont.systemFontOfSize(14)
+                underLine?.hidden = true
+            }
+            
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.refreshControl?.endRefreshing()
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        if currentSelectPedia != indexPath.item {
+            currentSelectPedia = indexPath.item
+            collectionView.reloadData()
+            PediaListProvider.loadPediaData(currentSelectPedia+1) {
+                subjects in
+                self.activityIndicator.hidden = true
+                self.currentDataSource = subjects
+                self.tableView.reloadData()
+            }
+        }
+    }
 }

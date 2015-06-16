@@ -60,19 +60,19 @@ class BBSViewController: UIViewController {
         //navBar.userInteractionEnabled = true
         //navBar.panGestureRecognizer.delaysTouchesBegan = true
         
-        var classesList:[Class] = GetClassesList()
-        for i in 0..<classesList.count {
-            var btn = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-            btn.frame = CGRectMake(CGFloat(i)*btnWidth, 0, btnWidth, btnHeight)
-            btn.tag = 200 + Int(classesList[i].Id)
-            btn.backgroundColor = UIColor.whiteColor()
-            btn.setTitleColor(NavBarBackgroudColor, forState: UIControlState.Normal)
-            btn.setTitle(classesList[i].Name, forState: UIControlState.Normal)
-            btn.addTarget(self, action: "classNavBtnClicked:", forControlEvents: UIControlEvents.TouchUpInside)
-            navBar.addSubview(btn)
-        }
+//        var classesList:[Class] = GetClassesList()
+//        for i in 0..<classesList.count {
+//            var btn = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+//            btn.frame = CGRectMake(CGFloat(i)*btnWidth, 0, btnWidth, btnHeight)
+//            btn.tag = 200 + Int(classesList[i].Id)
+//            btn.backgroundColor = UIColor.whiteColor()
+//            btn.setTitleColor(NavBarBackgroudColor, forState: UIControlState.Normal)
+//            btn.setTitle(classesList[i].Name, forState: UIControlState.Normal)
+//            btn.addTarget(self, action: "classNavBtnClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+//            navBar.addSubview(btn)
+//        }
         
-        navBar.contentSize = CGSizeMake(btnWidth*CGFloat(classesList.count), btnHeight)
+       // navBar.contentSize = CGSizeMake(btnWidth*CGFloat(classesList.count), btnHeight)
         //navBar.setContentOffset(CGPointMake(0, 0), animated: true)
         self.view.addSubview(navBar)
     }
