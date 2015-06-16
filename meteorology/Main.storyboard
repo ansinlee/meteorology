@@ -1,26 +1,144 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mAg-LE-qQl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Eqc-ch-a0H">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="sWI-Fl-pSi">
+            <objects>
+                <tabBarController id="Eqc-ch-a0H" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Guv-LR-3Tv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="i86-Dg-aM5" kind="relationship" relationship="viewControllers" id="jl7-wF-a9Q"/>
+                        <segue destination="B6g-Jl-wtL" kind="relationship" relationship="viewControllers" id="oxY-RB-MId"/>
+                        <segue destination="Pns-kv-ngi" kind="relationship" relationship="viewControllers" id="KKu-59-Afk"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IBP-N8-xLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-857.5" y="-510.5"/>
+        </scene>
+        <!--气象百科-->
         <scene sceneID="jVm-bP-cFY">
             <objects>
-                <viewController id="mAg-LE-qQl" customClass="MainViewController" customModule="meteorology" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mAg-LE-qQl" customClass="PediaViewController" customModule="meteorology" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h4j-U2-Vsc"/>
                         <viewControllerLayoutGuide type="bottom" id="iRa-r3-IOc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aYg-ZG-fRo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="气象百科" id="95n-aE-Ejg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcw-5y-YJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="306" y="451"/>
+            <point key="canvasLocation" x="217" y="-850"/>
+        </scene>
+        <!--百科-->
+        <scene sceneID="2Wa-Nd-Lid">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i86-Dg-aM5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="百科" image="tab_col" id="wMS-hO-eWl"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Gv-mx-Pdf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mAg-LE-qQl" kind="relationship" relationship="rootViewController" id="mUQ-tw-Ddj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ynm-6H-0ls" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-265" y="-850"/>
+        </scene>
+        <!--我-->
+        <scene sceneID="doR-OY-fg9">
+            <objects>
+                <navigationController id="Pns-kv-ngi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="我" image="tab_user" id="abN-Zi-uom"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dme-AF-syq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="e17-SK-C0g" kind="relationship" relationship="rootViewController" id="J8j-G0-bjE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hyb-9b-Ucg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-265" y="593"/>
+        </scene>
+        <!--Prof View Controller-->
+        <scene sceneID="6MV-PN-1US">
+            <objects>
+                <viewController id="e17-SK-C0g" customClass="ProfViewController" customModule="meteorology" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EOw-kT-5sb"/>
+                        <viewControllerLayoutGuide type="bottom" id="hvX-x6-1TR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Vf-Qy-Elh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ghC-rD-yDq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JxP-9k-kqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="270" y="593"/>
+        </scene>
+        <!--社区-->
+        <scene sceneID="RmC-VA-Tux">
+            <objects>
+                <navigationController id="B6g-Jl-wtL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="社区" image="tab_explore" id="L9m-fD-v4b"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DZN-IE-xR4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ibM-1E-L6Y" kind="relationship" relationship="rootViewController" id="QOv-1U-qhY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jJq-dz-f9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-265" y="-140"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="5vs-qu-TAT">
+            <objects>
+                <viewController id="ibM-1E-L6Y" customClass="BBSViewController" customModule="meteorology" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tpa-oG-kPc"/>
+                        <viewControllerLayoutGuide type="bottom" id="zim-9Z-Q9u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IRh-b5-Bjf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qA2-kC-Qxd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iO0-XH-JsO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278" y="-145"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab_col" width="26" height="26"/>
+        <image name="tab_explore" width="30" height="30"/>
+        <image name="tab_user" width="24" height="24"/>
+    </resources>
 </document>
