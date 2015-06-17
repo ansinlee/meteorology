@@ -62,7 +62,7 @@ class BBSReplyListTableViewCell: UITableViewCell {
     func setData(r:Reply) {
         self.reply = r
         self.id = r.Id
-        self.time.text = self.dateFormatter.stringFromDate(r.Time!)
+        //self.time.text = self.dateFormatter.stringFromDate(r.Time!)
         if r.Creator != nil {
             userNick.text = r.Creator?.Nick
             if r.Creator?.Icon != nil {

@@ -24,14 +24,15 @@ func GetUrl(path: String) -> String {
     return "\(url)"
 }
 
-func GetGoDate(date: String) -> NSDate? {
+func GetGoDate(date: String) -> String? {
     var GoDateFormatter = NSDateFormatter()
     GoDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
     var d = GoDateFormatter.dateFromString(date)
     if d == nil {
         d = NSDate()
     }
-    return d
+    GoDateFormatter.dateFormat = "MM月dd日 HH:mm"
+    return GoDateFormatter.stringFromDate(d!)
 }
 
 

@@ -32,7 +32,6 @@ class PediaViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicator.center = CGPoint(x: tableView.frame.width/2, y: tableView.frame.height/2)
-        self.tableView.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         self.tableView.addSubview(activityIndicator)
         PediaListProvider.loadPediaData(currentSelectPedia+1) {
@@ -49,6 +48,10 @@ class PediaViewController: UITableViewController {
         self.tableView.addGestureRecognizer(rightSwipe)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        activityIndicator.stopAnimating()
+    }
+    
     func initHeaderView() {
         let flowLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 0
@@ -63,11 +66,13 @@ class PediaViewController: UITableViewController {
         self.tableView.tableHeaderView = collectionView
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
+        let underLine = UIView(frame:  CGRectMake(0, 29.5, tableView.frame.size.width, 0.5))
+        underLine.backgroundColor = UIColor.lightGrayColor()
+        collectionView.addSubview(underLine)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        println(self.tableView.contentOffset)
         self.collectionView.frame = CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y+64, self.tableView.frame.width, 30)
     }
     
@@ -148,6 +153,7 @@ class PediaViewController: UITableViewController {
         if indexPath.row < currentDataSource.count {
             let subject = currentDataSource[indexPath.row]
             let detailVC = PediaDetailViewController(subject: subject)
+            //detailVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
@@ -182,7 +188,7 @@ extension PediaViewController:UICollectionViewDelegate,UICollectionViewDataSourc
             }
             label!.text = PediaListProvider.Classes[indexPath.item]
             if currentSelectPedia == indexPath.item {
-                label!.font = UIFont.boldSystemFontOfSize(14)
+                label!.font = UIFont.boldSystemFontOfSize(16)
                 underLine?.hidden = false
             } else {
                 label!.font = UIFont.systemFontOfSize(14)

@@ -11,14 +11,14 @@ import UIKit
 
 class Topic {
     var Id: Int32?
-    var Img: UIImage?
+    var Img: String?
     var Title: String?
     var Abstract:String?
-    var Time: NSDate?
+    var Time: String?
     var Creator: User?
     var Content:TopicDetailContent?
     
-    init(id: Int32?, img: UIImage?, title: String?, abstract: String?, time:NSDate?, creator:User?, content: TopicDetailContent?) {
+    init(id: Int32?, img: String?, title: String?, abstract: String?, time:String?, creator:User?, content: TopicDetailContent?) {
         self.Id = id
         self.Img = img
         self.Title = title
@@ -43,9 +43,7 @@ class Topic {
             return
         }
         self.Id = (data?.objectForKey("Id") as! NSNumber).intValue
-        var img = data?.objectForKey("Img") as! String
-        var nsd = NSData(contentsOfURL: NSURL(string: img)!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
-        self.Img = UIImage(data: nsd!)
+        self.Img = data?.objectForKey("Img") as? String
         self.Time = GetGoDate(data?.objectForKey("Createtime") as! String)
         self.Title = data?.objectForKey("Title") as? String
         self.Abstract = data?.objectForKey("Abstract")as? String

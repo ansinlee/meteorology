@@ -16,7 +16,6 @@
 		3D3A5B9D1ABD605100BBD67F /* BBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A5B9C1ABD605100BBD67F /* BBSViewController.swift */; };
 		3D3A5B9F1ABD606300BBD67F /* ProfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A5B9E1ABD606300BBD67F /* ProfViewController.swift */; };
 		3D3A5BC21ABDCC3300BBD67F /* PediaSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A5BC11ABDCC3300BBD67F /* PediaSearchViewController.swift */; };
-		3D6649241B22393D0079A3DF /* BBSListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649231B22393D0079A3DF /* BBSListTableViewCell.swift */; };
 		3D6649261B223A7D0079A3DF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649251B223A7D0079A3DF /* User.swift */; };
 		3D6649281B2241DE0079A3DF /* BBSDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649271B2241DE0079A3DF /* BBSDetailViewController.swift */; };
 		3D66492A1B2C11530079A3DF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649291B2C11530079A3DF /* Util.swift */; };
@@ -29,7 +28,6 @@
 		3D703FF21ABEBF0300CEB590 /* btn_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D703FF01ABEBF0300CEB590 /* btn_search.png */; };
 		3D703FFC1ABF0F6C00CEB590 /* PediaListProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D703FFB1ABF0F6C00CEB590 /* PediaListProvider.swift */; };
 		3D7040021ABF155400CEB590 /* PediaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */; };
-		3D92BB111ACFD1F7002C5E3B /* BBSListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB101ACFD1F7002C5E3B /* BBSListView.swift */; };
 		3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */; };
 		3D92BB1A1ACFDD35002C5E3B /* PediaSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */; };
 /* End PBXBuildFile section */
@@ -58,7 +56,6 @@
 		3D3A5B9C1ABD605100BBD67F /* BBSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSViewController.swift; sourceTree = "<group>"; };
 		3D3A5B9E1ABD606300BBD67F /* ProfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfViewController.swift; sourceTree = "<group>"; };
 		3D3A5BC11ABDCC3300BBD67F /* PediaSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaSearchViewController.swift; sourceTree = "<group>"; };
-		3D6649231B22393D0079A3DF /* BBSListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSListTableViewCell.swift; sourceTree = "<group>"; };
 		3D6649251B223A7D0079A3DF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3D6649271B2241DE0079A3DF /* BBSDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSDetailViewController.swift; sourceTree = "<group>"; };
 		3D6649291B2C11530079A3DF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -71,7 +68,6 @@
 		3D703FF01ABEBF0300CEB590 /* btn_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_search.png; path = images/btn_search.png; sourceTree = "<group>"; };
 		3D703FFB1ABF0F6C00CEB590 /* PediaListProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaListProvider.swift; sourceTree = "<group>"; };
 		3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaDetailViewController.swift; sourceTree = "<group>"; };
-		3D92BB101ACFD1F7002C5E3B /* BBSListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSListView.swift; sourceTree = "<group>"; };
 		3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSTopic.swift; sourceTree = "<group>"; };
 		3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaSubject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,8 +169,6 @@
 				3D66493F1B2F01EE0079A3DF /* BBSReplyListTableViewCell.swift */,
 				3D3A5B9C1ABD605100BBD67F /* BBSViewController.swift */,
 				3D6649271B2241DE0079A3DF /* BBSDetailViewController.swift */,
-				3D6649231B22393D0079A3DF /* BBSListTableViewCell.swift */,
-				3D92BB101ACFD1F7002C5E3B /* BBSListView.swift */,
 				3D66493D1B2DCA170079A3DF /* BBSReplyListView.swift */,
 			);
 			name = BBS;
@@ -316,13 +310,11 @@
 				3D66493C1B2DC7570079A3DF /* BBSReply.swift in Sources */,
 				3D3A5BC21ABDCC3300BBD67F /* PediaSearchViewController.swift in Sources */,
 				3D6649281B2241DE0079A3DF /* BBSDetailViewController.swift in Sources */,
-				3D6649241B22393D0079A3DF /* BBSListTableViewCell.swift in Sources */,
 				3D66493E1B2DCA170079A3DF /* BBSReplyListView.swift in Sources */,
 				3D3A5B991ABD5A9900BBD67F /* MainViewController.swift in Sources */,
 				3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */,
 				3D3A5B9B1ABD601900BBD67F /* PediaViewController.swift in Sources */,
 				3D92BB1A1ACFDD35002C5E3B /* PediaSubject.swift in Sources */,
-				3D92BB111ACFD1F7002C5E3B /* BBSListView.swift in Sources */,
 				3D6649261B223A7D0079A3DF /* User.swift in Sources */,
 				3D6649401B2F01EE0079A3DF /* BBSReplyListTableViewCell.swift in Sources */,
 				3D703FFC1ABF0F6C00CEB590 /* PediaListProvider.swift in Sources */,

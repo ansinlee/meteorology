@@ -240,7 +240,7 @@ class BBSDetailViewController: UIViewController {
             currentHeight += replyContent.frame.height + self.border / 2
             
             // 回复时间
-            text = GetPrintDateString(reply.Time)
+            text = reply.Time!
             var replyTime = UILabel(frame: CGRect(x: self.border,
                 y: currentHeight,
                 width: self.mainView!.frame.width-2*self.border,

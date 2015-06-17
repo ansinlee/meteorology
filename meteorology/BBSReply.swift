@@ -11,11 +11,11 @@ import Foundation
 class Reply {
     var Id: Int32?
     var TopicId: Int32?
-    var Time: NSDate?
+    var Time: String?
     var Creator: User?
     var Content:String?
     
-    init(id: Int32?, topicid: Int32?, time:NSDate?, creator:User?, content: String?) {
+    init(id: Int32?, topicid: Int32?, time:String?, creator:User?, content: String?) {
         self.Id = id
         self.TopicId = topicid
         self.Time = time

@@ -77,7 +77,7 @@ class PediaDetailViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         
         // 画分割线
-        var splitLable = UILabel(frame: CGRectMake(self.border, self.abstractLable!.frame.origin.y+self.abstractLable!.frame.height + self.border / 2, self.view.frame.width - 2 * self.border, 2))
+        var splitLable = UILabel(frame: CGRectMake(self.border, self.abstractLable!.frame.origin.y+self.abstractLable!.frame.height + self.border / 2, self.view.frame.width - 2 * self.border, 0.5))
         splitLable.backgroundColor = UIColor.grayColor()
         self.mainView?.addSubview(splitLable)
         

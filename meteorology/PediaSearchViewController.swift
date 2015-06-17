@@ -8,91 +8,65 @@
 
 import UIKit
 
-class PediaSearchViewController: UIViewController, UISearchBarDelegate {
-    var searchBar: UISearchBar?
+class PediaSearchViewController: UITableViewController, UISearchBarDelegate {
+    
+    var currentDataSource:[Subject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: UIColor.whiteColor(),
-            forKey:NSForegroundColorAttributeName) as [NSObject : AnyObject]
-        self.view.backgroundColor = MainBackgroudColor
-        
-        // 打开子神力返回只有一个箭头
-        var backButtonBar = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backButtonBar
-        
-        // 添加搜索框
-        self.addSearchBar()
-        
-        self.addSearchResultView()
-    }
-
-    func addSearchBar() {
-        self.searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.navigationController!.navigationBar.frame.width, height: self.navigationController!.navigationBar.frame.height))
-        self.searchBar?.delegate = self
-        self.searchBar?.placeholder = "搜索"
-        self.searchBar?.autocapitalizationType = UITextAutocapitalizationType.None
-        self.navigationItem.titleView = self.searchBar
-    }
-    
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        for subView in searchBar.subviews[0].subviews {
-            if subView.isKindOfClass(UIButton) {
-                (subView as! UIButton).setTitle("取消", forState: UIControlState.Normal)
-            }
-        }
-    }
-    
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-        self.searchBar?.showsScopeBar = true
-        self.searchBar?.sizeToFit()
-        self.searchBar?.showsCancelButton = true
-        return true
-    }
-    
-    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
-        self.searchBar?.showsScopeBar = false
-        self.searchBar?.sizeToFit()
-        self.searchBar?.showsCancelButton = false
-        self.searchBar?.resignFirstResponder()
-        return true
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.searchBar?.showsScopeBar = false
-        self.searchBar?.sizeToFit()
-        self.searchBar?.showsCancelButton = false
-        self.searchBar?.resignFirstResponder()
+        self.tableView.tableFooterView = UIView()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        self.searchBar?.resignFirstResponder()
-        var query = self.searchBar?.text
-        //self.searchView?.searchData(query!)
+        PediaListProvider.searchData(searchBar.text) {
+            subjects in
+            self.currentDataSource = subjects
+            self.tableView.reloadData()
+        }
     }
     
-    func addSearchResultView() {
-       // self.searchView = PediaListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        //self.searchView?.parentVC = self
-        //self.view.addSubview(self.searchView!)
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.currentDataSource = []
+        self.tableView.reloadData()
+        searchBar.endEditing(true)
+    }
+
+    // MARK: tabelview delegate
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.currentDataSource.count
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? UITableViewCell {
+            let subject = currentDataSource[indexPath.row]
+            if subject.Img == nil {
+                (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+            }
+            dispatch_async(dispatch_get_global_queue(0, 0)) {
+                var data = NSData(contentsOfURL: NSURL(string: subject.Img!)!)
+                dispatch_async(dispatch_get_main_queue()) {
+                    if data != nil {
+                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(data: data!)
+                    } else {
+                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+                    }
+                }
+            }
+            (cell.viewWithTag(2) as! UILabel).text = subject.Title
+            (cell.viewWithTag(3) as! UILabel).text = subject.Abstract
+            
+            return cell
+        }
+        return UITableViewCell()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        if indexPath.row < currentDataSource.count {
+            let subject = currentDataSource[indexPath.row]
+            let detailVC = PediaDetailViewController(subject: subject)
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
-    */
-
 }
