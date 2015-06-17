@@ -139,16 +139,17 @@ class BBSViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? UITableViewCell {
             let subject = currentDataSource[indexPath.row]
-            if subject.Img == nil {
+            if subject.Creator == nil || subject.Creator!.Icon == nil {
                 (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
-            }
-            dispatch_async(dispatch_get_global_queue(0, 0)) {
-                var data = NSData(contentsOfURL: NSURL(string: subject.Img!)!)
-                dispatch_async(dispatch_get_main_queue()) {
-                    if data != nil {
-                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(data: data!)
-                    } else {
-                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+            } else {
+                dispatch_async(dispatch_get_global_queue(0, 0)) {
+                    var data = NSData(contentsOfURL: NSURL(string: subject.Creator!.Icon!)!)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if data != nil {
+                            (cell.viewWithTag(1) as! UIImageView).image = UIImage(data: data!)
+                        } else {
+                            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+                        }
                     }
                 }
             }

@@ -48,6 +48,7 @@ class Topic {
         self.Title = data?.objectForKey("Title") as? String
         self.Abstract = data?.objectForKey("Abstract")as? String
         self.Content = TopicDetailContent(data: data?.objectForKey("Content"))
+        self.Creator = User(data: data?.objectForKey("Creator"))
     }
 }
 

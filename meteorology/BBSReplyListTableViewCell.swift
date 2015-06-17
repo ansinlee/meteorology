@@ -66,7 +66,7 @@ class BBSReplyListTableViewCell: UITableViewCell {
         if r.Creator != nil {
             userNick.text = r.Creator?.Nick
             if r.Creator?.Icon != nil {
-                userIcon.image = r.Creator?.Icon
+                //userIcon.image = r.Creator?.Icon
             }
         }
     }
