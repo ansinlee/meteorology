@@ -13,7 +13,39 @@ class BBSViewController: UITableViewController {
     var collectionView:UICollectionView!
     var currentDataSource:[Topic] = []
     
-    var currentSelectPedia = 0
+    var currentSelectPedia = 0 {
+        didSet {
+            
+            if CGFloat(currentSelectPedia*60) > collectionView.frame.width/2 {
+                var offset = CGFloat(currentSelectPedia*60) -  collectionView.frame.width/2
+                if collectionView.contentSize.width - offset > collectionView.frame.width - 60 {
+                    collectionView.contentOffset = CGPointMake(offset , 0)
+                }
+            }
+            
+            if currentSelectPedia == 0 {
+                collectionView.contentOffset = CGPointZero
+            }
+            
+            if currentSelectPedia > oldValue {
+                let anim:CATransition = CATransition()
+                anim.type = "push"
+                anim.subtype = "fromRight"
+                anim.duration = 0.3
+                for cell in tableView.visibleCells() {
+                    cell.layer.addAnimation(anim, forKey: "animate")
+                }
+            } else {
+                let anim:CATransition = CATransition()
+                anim.type = "push"
+                anim.subtype = "fromLeft"
+                anim.duration = 0.3
+                for cell in tableView.visibleCells() {
+                    cell.layer.addAnimation(anim, forKey: "animate")
+                }
+            }
+        }
+    }
     
     var activityIndicator:UIActivityIndicatorView!
     

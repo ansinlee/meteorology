@@ -24,11 +24,44 @@ class PediaViewController: UITableViewController {
     
     var currentDataSource:[Subject] = []
     
-    var currentSelectPedia = 0
+    var currentSelectPedia = 0 {
+        didSet {
+            
+            if CGFloat(currentSelectPedia*60) > collectionView.frame.width/2 {
+                var offset = CGFloat(currentSelectPedia*60) -  collectionView.frame.width/2
+                if collectionView.contentSize.width - offset > collectionView.frame.width - 60 {
+                    collectionView.contentOffset = CGPointMake(offset , 0)
+                }
+            }
+            
+            if currentSelectPedia == 0 {
+                collectionView.contentOffset = CGPointZero
+            }
+            
+            if currentSelectPedia > oldValue {
+                let anim:CATransition = CATransition()
+                anim.type = "push"
+                anim.subtype = "fromRight"
+                anim.duration = 0.3
+                for cell in tableView.visibleCells() {
+                    cell.layer.addAnimation(anim, forKey: "animate")
+                }
+            } else {
+                let anim:CATransition = CATransition()
+                anim.type = "push"
+                anim.subtype = "fromLeft"
+                 anim.duration = 0.3
+                for cell in tableView.visibleCells() {
+                    cell.layer.addAnimation(anim, forKey: "animate")
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initHeaderView()
+        self.view.backgroundColor = UIColor.whiteColor()
         tableView.tableFooterView = UIView()
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicator.center = CGPoint(x: tableView.frame.width/2, y: tableView.frame.height/2)
