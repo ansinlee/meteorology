@@ -122,9 +122,19 @@ class BBSDetailViewController: UIViewController {
     func onReplyTopic(btn:UIButton) {
         var text = self.replyTextField?.text
         NSLog("begint reply : \(text)")
-        var post = "{\"Content\":\"\(text)\", \"Topicid\":\"\(self.topic?.Id)\",  \"Pid\":0, \"Creatorid\":1}"
+        var post = "{\"Content\":\"\(text!)\", \"Topicid\":\"\(self.topic!.Id!)\",  \"Pid\":0, \"Creatorid\":1}"
 
+
+        var url = NSURL(string: GetUrl("/reply"))
+        var request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+        var defaultConfigObject = NSURLSessionConfiguration.defaultSessionConfiguration()
+        var session = NSURLSession(configuration: defaultConfigObject, delegate: nil, delegateQueue:NSOperationQueue.currentQueue())
+        var postTask = session.uploadTaskWithRequest(request, fromData: NSData(base64EncodedString: post, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)){ (data: NSData!, resp: NSURLResponse!, err:NSError!) -> Void in
+            NSLog("\(data) \(err) \(post) \(resp)")
+        }
         
+        postTask.resume()
     }
     
     func addSplitLine() {
