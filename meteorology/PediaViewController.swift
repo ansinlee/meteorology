@@ -66,7 +66,7 @@ class PediaViewController: UITableViewController {
         self.tableView.tableHeaderView = collectionView
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-        let underLine = UIView(frame:  CGRectMake(0, 29.5, tableView.frame.size.width, 0.5))
+        let underLine = UIView(frame:  CGRectMake(-100, 29.5, 2*tableView.frame.size.width+100, 0.5))
         underLine.backgroundColor = UIColor.lightGrayColor()
         collectionView.addSubview(underLine)
     }
