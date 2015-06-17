@@ -59,11 +59,16 @@ class BBSViewController: UITableViewController {
             self.tableView.layoutMargins = UIEdgeInsetsZero
         }
         self.tableView.separatorInset = UIEdgeInsetsZero
+        self.refreshControl?.frame =  CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y+94, self.tableView.frame.width, 80)
         self.collectionView.frame = CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y+64, self.tableView.frame.width, 30)
     }
     
     override func viewWillDisappear(animated: Bool) {
         activityIndicator.stopAnimating()
+    }
+    
+    @IBAction func onRefresh(sender: UIRefreshControl) {
+        sender.endRefreshing()
     }
     
     func swipeRight() {

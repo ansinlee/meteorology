@@ -73,6 +73,7 @@ class PediaViewController: UITableViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.refreshControl?.frame =  CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y+94, self.tableView.frame.width, 80)
         self.collectionView.frame = CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y+64, self.tableView.frame.width, 30)
     }
     

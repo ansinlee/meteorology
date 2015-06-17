@@ -471,6 +471,20 @@
                     <navigationItem key="navigationItem" title="气象社区" id="6XQ-Ko-mBj">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="EIn-hx-29x"/>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ciF-Cf-yLb">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="下拉刷新数据">
+                                <attributes>
+                                    <font key="NSFont" size="11" name="STHeitiSC-Light"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <connections>
+                            <action selector="onRefresh:" destination="L6t-jQ-mhw" eventType="valueChanged" id="1we-QN-RH1"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wsV-O1-xeI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
