@@ -122,19 +122,20 @@ class BBSDetailViewController: UIViewController {
     func onReplyTopic(btn:UIButton) {
         var text = self.replyTextField?.text
         NSLog("begint reply : \(text)")
-        var post = "{\"Content\":\"\(text!)\", \"Topicid\":\"\(self.topic!.Id!)\",  \"Pid\":0, \"Creatorid\":1}"
+        var post = "{\"Content\":\"\(text!)\", \"Topicid\":\(self.topic!.Id!),  \"Pid\":0, \"Creatorid\":1}"
 
-
-        var url = NSURL(string: GetUrl("/reply"))
-        var request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "POST"
-        var defaultConfigObject = NSURLSessionConfiguration.defaultSessionConfiguration()
-        var session = NSURLSession(configuration: defaultConfigObject, delegate: nil, delegateQueue:NSOperationQueue.currentQueue())
-        var postTask = session.uploadTaskWithRequest(request, fromData: NSData(base64EncodedString: post, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)){ (data: NSData!, resp: NSURLResponse!, err:NSError!) -> Void in
-            NSLog("\(data) \(err) \(post) \(resp)")
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
+            var url = NSURL(string: GetUrl("/reply"))
+            var request = NSMutableURLRequest(URL: url!)
+            request.HTTPMethod = "POST"
+            request.setValue("\(post.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))", forHTTPHeaderField: "Content-Length")
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField:"Content-Type")
+            request.HTTPBody = post.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            let postTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData!, resp: NSURLResponse!, err:NSError!)-> Void in
+                NSLog("\(data) \(err) \(request.HTTPBody) \(resp)")
+            })
+            postTask.resume()
         }
-        
-        postTask.resume()
     }
     
     func addSplitLine() {
