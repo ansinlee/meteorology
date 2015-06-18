@@ -55,7 +55,7 @@ class BBSPublishViewController: UIViewController {
             abstract = (abstract as NSString).substringToIndex(50)
         }
         
-        var post = "{\"Content\":\"[{\\\"type\\\":0, data:\\\"\(content)\\\"}]\", \"Classid\":\(self.selectPedia),  \"Pid\":0, \"Creatorid\":\(GetCurrentUser().Id!)}"
+        var post = "{\"Content\":\"[{\\\"type\\\":0, \\\"data\\\":\\\"\(content)\\\"}]\", \"title\":\"\(title)\", \"abstract\":\"\(abstract)\", \"Classid\":\(self.selectPedia),  \"Pid\":0, \"Creatorid\":\(GetCurrentUser().Id!)}"
         var url = NSURL(string: GetUrl("/topic"))
         var request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"

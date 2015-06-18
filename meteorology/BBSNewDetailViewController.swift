@@ -75,12 +75,13 @@ class BBSNewDetailViewController: UIViewController {
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+                //self.tableView.reloadData()
             }
         }
     }
 
     func loadReplyListData() {
-        
+        self.replyListData = []
         var id:Int32 = self.topic.Id!
         dispatch_async(dispatch_get_global_queue(0, 0)) {
             var url = NSURL(string:GetUrl("/reply?offset=\(0)&limit=\(10)&query=topicid:\(id)&sortby=id&order=desc"))
@@ -108,6 +109,7 @@ class BBSNewDetailViewController: UIViewController {
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+                //self.tableView.reloadData()
             }
         }
     }

@@ -132,7 +132,7 @@ class BBSDetailViewController: UIViewController, UITextFieldDelegate {
     func onReplyTopic(btn:UIButton) {
         var text = self.replyTextField?.text
         NSLog("begint reply : \(text)")
-        var post = "{\"Content\":\"\(text!)\", \"Topicid\":\(self.topic!.Id!),  \"Pid\":0, \"Creatorid\":1}"
+        var post = "{\"Content\":\"\(text!)\", \"Topicid\":\(self.topic!.Id!),  \"Pid\":0, \"Creatorid\":\(GetCurrentUser().Id!)}"
 
         dispatch_async(dispatch_get_global_queue(0, 0)) {
             var url = NSURL(string: GetUrl("/reply"))

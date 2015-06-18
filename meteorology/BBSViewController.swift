@@ -131,7 +131,7 @@ class BBSViewController: UITableViewController {
     func loadListData(index: Int) {
         activityIndicator.startAnimating()
         dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/topic?offset=\(0)&limit=\(10)&query=classid:\(index)"))
+            var url = NSURL(string:GetUrl("/topic?offset=\(0)&limit=\(10)&query=classid:\(index)&sortby=id&order=desc"))
             //获取JSON数据
             var dataList:[Topic] = []
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
