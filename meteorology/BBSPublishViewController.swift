@@ -32,24 +32,28 @@ class BBSPublishViewController: UIViewController {
     
 
     @IBAction func onPublish(sender: AnyObject) {
-        let title = (titleLabel.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let content = (textView.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        if title.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 && content.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
-            // TODO : publish 
-            
-        } else {
-            UIAlertView(title: "提示", message: "请输入完整的帖子信息", delegate: nil, cancelButtonTitle: "确定").show()
-        }
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        let title = (titleLabel.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let content = (textView.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        if title.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 || content.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
+            UIAlertView(title: "提示", message: "请输入完整的帖子信息", delegate: nil, cancelButtonTitle: "确定").show()
+          return false
+        }
+        return true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let title = (titleLabel.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let content = (textView.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
-    */
+
 
 }

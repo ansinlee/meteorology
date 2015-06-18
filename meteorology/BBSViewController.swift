@@ -211,6 +211,11 @@ class BBSViewController: UITableViewController {
 }
 
 extension BBSViewController {
+    
+    @IBAction func unwindSegue(segue:UIStoryboardSegue) {
+        loadListData(currentSelectPedia+1)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.destinationViewController is BBSPublishViewController {
             if let desVC = segue.destinationViewController as? BBSPublishViewController {

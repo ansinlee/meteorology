@@ -494,6 +494,7 @@
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wsV-O1-xeI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="WFX-et-bTw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="234" y="-140"/>
         </scene>
@@ -592,6 +593,7 @@
                         <barButtonItem key="rightBarButtonItem" title="发布" id="d50-W9-nXO">
                             <connections>
                                 <action selector="onPublish:" destination="7o0-Zj-bbN" id="bqb-O7-sLa"/>
+                                <segue destination="WFX-et-bTw" kind="unwind" unwindAction="unwindSegue:" id="JeT-hR-BLQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
