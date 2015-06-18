@@ -202,11 +202,11 @@ class BBSViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        if indexPath.row < currentDataSource.count {
-            let subject = currentDataSource[indexPath.row]
-            let detailVC = BBSDetailViewController(topic: subject)
-            self.navigationController?.pushViewController(detailVC, animated: true)
-        }
+//        if indexPath.row < currentDataSource.count {
+//            let subject = currentDataSource[indexPath.row]
+//            let detailVC = BBSDetailViewController(topic: subject)
+//            self.navigationController?.pushViewController(detailVC, animated: true)
+//        }
     }
 }
 
@@ -215,6 +215,12 @@ extension BBSViewController {
         if segue.destinationViewController is BBSPublishViewController {
             if let desVC = segue.destinationViewController as? BBSPublishViewController {
                 desVC.selectPedia = currentSelectPedia + 1
+            }
+        } else if segue.destinationViewController is BBSNewDetailViewController {
+            if let desVC = segue.destinationViewController as? BBSNewDetailViewController {
+                if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                     desVC.topic = currentDataSource[indexPath.row]
+                }
             }
         }
     }

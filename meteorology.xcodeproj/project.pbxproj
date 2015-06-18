@@ -30,7 +30,9 @@
 		3D7040021ABF155400CEB590 /* PediaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */; };
 		3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */; };
 		3D92BB1A1ACFDD35002C5E3B /* PediaSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */; };
+		4576ABD77E128CB121B5B874 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57159E3803D7A74D439B72 /* libPods.a */; };
 		A9B97E9C1B331F3A00F2F736 /* BBSPublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */; };
+		B6B1F6EE1B33359000898AE8 /* BBSNewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1F6ED1B33359000898AE8 /* BBSNewDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		379C089E08BEF4BF34769EA4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3D3A5B561AB70F4B00BBD67F /* meteorology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meteorology.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D3A5B5A1AB70F4B00BBD67F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D3A5B5B1AB70F4B00BBD67F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +74,11 @@
 		3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaDetailViewController.swift; sourceTree = "<group>"; };
 		3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSTopic.swift; sourceTree = "<group>"; };
 		3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaSubject.swift; sourceTree = "<group>"; };
+		8B57159E3803D7A74D439B72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9100818C2120C9685DEDC22B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSPublishViewController.swift; sourceTree = "<group>"; };
+		B6B1F6EA1B33311800898AE8 /* meteorology-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "meteorology-Bridging-Header.h"; sourceTree = "<group>"; };
+		B6B1F6ED1B33359000898AE8 /* BBSNewDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSNewDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4576ABD77E128CB121B5B874 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,12 +100,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19EDB88C7C55D9496B60EDEE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				379C089E08BEF4BF34769EA4 /* Pods.debug.xcconfig */,
+				9100818C2120C9685DEDC22B /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		29C7059F8FBA0EC4E0B7B0FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B57159E3803D7A74D439B72 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3D3A5B4D1AB70F4B00BBD67F = {
 			isa = PBXGroup;
 			children = (
 				3D3A5B581AB70F4B00BBD67F /* meteorology */,
 				3D3A5B6E1AB70F4C00BBD67F /* meteorologyTests */,
 				3D3A5B571AB70F4B00BBD67F /* Products */,
+				19EDB88C7C55D9496B60EDEE /* Pods */,
+				29C7059F8FBA0EC4E0B7B0FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,6 +160,7 @@
 				3D6649391B2D9BE10079A3DF /* lanch_picture.jpg */,
 				3D703FEE1ABEBEE200CEB590 /* common */,
 				3D3A5B5A1AB70F4B00BBD67F /* Info.plist */,
+				B6B1F6EA1B33311800898AE8 /* meteorology-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -173,6 +201,7 @@
 				3D6649271B2241DE0079A3DF /* BBSDetailViewController.swift */,
 				3D66493D1B2DCA170079A3DF /* BBSReplyListView.swift */,
 				A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */,
+				B6B1F6ED1B33359000898AE8 /* BBSNewDetailViewController.swift */,
 			);
 			name = BBS;
 			sourceTree = "<group>";
@@ -213,9 +242,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D3A5B751AB70F4C00BBD67F /* Build configuration list for PBXNativeTarget "meteorology" */;
 			buildPhases = (
+				C4A719831F8F0209FDDB9E8E /* Check Pods Manifest.lock */,
 				3D3A5B521AB70F4B00BBD67F /* Sources */,
 				3D3A5B531AB70F4B00BBD67F /* Frameworks */,
 				3D3A5B541AB70F4B00BBD67F /* Resources */,
+				A894465D588814E53632BFE9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -305,6 +336,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A894465D588814E53632BFE9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4A719831F8F0209FDDB9E8E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3D3A5B521AB70F4B00BBD67F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -314,6 +378,7 @@
 				3D66493C1B2DC7570079A3DF /* BBSReply.swift in Sources */,
 				3D3A5BC21ABDCC3300BBD67F /* PediaSearchViewController.swift in Sources */,
 				3D6649281B2241DE0079A3DF /* BBSDetailViewController.swift in Sources */,
+				B6B1F6EE1B33359000898AE8 /* BBSNewDetailViewController.swift in Sources */,
 				3D66493E1B2DCA170079A3DF /* BBSReplyListView.swift in Sources */,
 				3D3A5B991ABD5A9900BBD67F /* MainViewController.swift in Sources */,
 				3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */,
@@ -439,23 +504,30 @@
 		};
 		3D3A5B761AB70F4C00BBD67F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 379C089E08BEF4BF34769EA4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = meteorology/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "meteorology/meteorology-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		3D3A5B771AB70F4C00BBD67F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9100818C2120C9685DEDC22B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = meteorology/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "meteorology/meteorology-Bridging-Header.h";
 			};
 			name = Release;
 		};
