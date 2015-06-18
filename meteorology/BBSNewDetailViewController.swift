@@ -226,7 +226,26 @@ extension BBSNewDetailViewController:UITextFieldDelegate {
         if let text = textField.text {
             textField.resignFirstResponder()
             // TODO: send request reload data
-            textField.text = ""
+            NSLog("begint reply : \(text)")
+            var post = "{\"Content\":\"\(text)\", \"Topicid\":\(self.topic!.Id!),  \"Pid\":0, \"Creatorid\":\(GetCurrentUser().Id!)}"
+            
+            dispatch_async(dispatch_get_global_queue(0, 0)) {
+                var url = NSURL(string: GetUrl("/reply"))
+                var request = NSMutableURLRequest(URL: url!)
+                request.HTTPMethod = "POST"
+                request.setValue("\(post.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))", forHTTPHeaderField: "Content-Length")
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField:"Content-Type")
+                request.HTTPBody = post.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+                let postTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData!, resp: NSURLResponse!, err:NSError!)-> Void in
+                    NSLog("\(data) \(err) \(request.HTTPBody) \(resp)")
+                    if err == nil {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            textField.text = ""
+                        }
+                    }
+                })
+                postTask.resume()
+            }
             return true
         }
         return true
