@@ -855,7 +855,7 @@
                         <barButtonItem key="rightBarButtonItem" title="发布" id="d50-W9-nXO">
                             <connections>
                                 <action selector="onPublish:" destination="7o0-Zj-bbN" id="bqb-O7-sLa"/>
-                                <segue destination="WFX-et-bTw" kind="unwind" unwindAction="unwindSegue:" id="JeT-hR-BLQ"/>
+                                <segue destination="WFX-et-bTw" kind="unwind" identifier="unwind" unwindAction="unwindSegue:" id="JeT-hR-BLQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

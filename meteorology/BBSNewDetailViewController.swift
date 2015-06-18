@@ -74,9 +74,7 @@ class BBSNewDetailViewController: UIViewController {
                 self.topic?.Content = TopicDetailContent(data: retdata?.objectForKey("Content"))
             }
             dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.beginUpdates()
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
-                self.tableView.endUpdates()
             }
         }
     }
@@ -194,7 +192,7 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource {
                 }
                 return cell
             }
-            
+            return UITableViewCell()
         }
         if let cell = tableView.dequeueReusableCellWithIdentifier("replycell", forIndexPath: indexPath) as? UITableViewCell {
             let replay = replyListData[indexPath.row]
@@ -240,6 +238,8 @@ extension BBSNewDetailViewController:UITextFieldDelegate {
                     NSLog("\(data) \(err) \(request.HTTPBody) \(resp)")
                     if err == nil {
                         dispatch_async(dispatch_get_main_queue()) {
+                            self.tableView.contentOffset = CGPointZero
+                            self.loadReplyListData()
                             textField.text = ""
                         }
                     }

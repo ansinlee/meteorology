@@ -17,6 +17,8 @@ class BBSPublishViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UITextField!
     
+    var loadPublishFinish = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.becomeFirstResponder()
@@ -39,6 +41,9 @@ class BBSPublishViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if loadPublishFinish == true {
+            return true
+        }
         let title = (titleLabel.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         let content = (textView.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         if title.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 || content.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
@@ -59,21 +64,18 @@ class BBSPublishViewController: UIViewController {
         request.HTTPBody = post.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         let postTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData!, resp: NSURLResponse!, err:NSError!)-> Void in
             NSLog("\(data) \(err) \(request.HTTPBody) \(resp)")
-            if err == nil {
-                UIAlertView(title: "提示", message: "网络异常", delegate: nil, cancelButtonTitle: "确定").show()
+            dispatch_async(dispatch_get_main_queue()) {
+                if err != nil {
+                    UIAlertView(title: "提示", message: "网络异常", delegate: nil, cancelButtonTitle: "确定").show()
+                } else {
+                    self.loadPublishFinish = true
+                    self.performSegueWithIdentifier("unwind", sender: sender)
+                }
             }
         })
         postTask.resume()
         
-        return true
+        return false
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        let title = (titleLabel.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let content = (textView.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-    }
-
-
 }
