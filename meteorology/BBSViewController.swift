@@ -210,6 +210,16 @@ class BBSViewController: UITableViewController {
     }
 }
 
+extension BBSViewController {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is BBSPublishViewController {
+            if let desVC = segue.destinationViewController as? BBSPublishViewController {
+                desVC.selectPedia = currentSelectPedia + 1
+            }
+        }
+    }
+}
+
 // MARK: 给上面的标题栏提供的样式
 
 extension BBSViewController:UICollectionViewDelegate,UICollectionViewDataSource {

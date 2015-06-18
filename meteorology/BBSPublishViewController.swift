@@ -10,6 +10,8 @@
 import UIKit
 
 class BBSPublishViewController: UIViewController {
+    
+    var selectPedia:Int = 0
 
     @IBOutlet weak var textView: UITextView!
     
@@ -17,8 +19,10 @@ class BBSPublishViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         titleLabel.becomeFirstResponder()
+//        textView.layer.borderWidth = 0.5
+//        textView.layer.borderColor = UIColor.lightGrayColor().CGColor
+//        textView.layer.cornerRadius = 3
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,6 +31,17 @@ class BBSPublishViewController: UIViewController {
     }
     
 
+    @IBAction func onPublish(sender: AnyObject) {
+        let title = (titleLabel.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let content = (textView.text as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        if title.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 && content.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+            // TODO : publish 
+            
+        } else {
+            UIAlertView(title: "提示", message: "请输入完整的帖子信息", delegate: nil, cancelButtonTitle: "确定").show()
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
