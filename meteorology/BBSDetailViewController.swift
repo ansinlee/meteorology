@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BBSDetailViewController: UIViewController {
+class BBSDetailViewController: UIViewController, UITextFieldDelegate {
     let border = CGFloat(20)
     let titleFontSize = CGFloat(20)
     let contentTextFontSize = CGFloat(14)
@@ -17,7 +17,7 @@ class BBSDetailViewController: UIViewController {
     let contetnImageHeight = CGFloat(200)
     let textStartSpace = "       "
     let contextCornerRadius = CGFloat(8)
-    let replyFormHeight = CGFloat(40)
+    let replyFormHeight = CGFloat(50)
     
     var mainView: UIScrollView?
     var replyView: UIView?
@@ -106,6 +106,7 @@ class BBSDetailViewController: UIViewController {
         self.replyTextField!.clearButtonMode = UITextFieldViewMode.Always;
         //键盘类型
         self.replyTextField!.keyboardType = UIKeyboardType.Default
+        self.replyTextField?.delegate = self
         self.replyView?.addSubview(self.replyTextField!)
         
         self.replyButton = UIButton.buttonWithType(UIButtonType.System) as? UIButton
@@ -118,6 +119,15 @@ class BBSDetailViewController: UIViewController {
         self.replyView?.addSubview(self.replyButton!)
         
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.replyTextField {
+            self.replyTextField?.resignFirstResponder()
+        }
+        return true
+    }
+    
+    
     
     func onReplyTopic(btn:UIButton) {
         var text = self.replyTextField?.text
@@ -133,6 +143,11 @@ class BBSDetailViewController: UIViewController {
             request.HTTPBody = post.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
             let postTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData!, resp: NSURLResponse!, err:NSError!)-> Void in
                 NSLog("\(data) \(err) \(request.HTTPBody) \(resp)")
+                if err == nil {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.replyTextField!.text = ""
+                    }
+                }
             })
             postTask.resume()
         }
@@ -189,7 +204,7 @@ class BBSDetailViewController: UIViewController {
     func loadReplyListData() {
         replyListData = []
         var id:Int32 = self.topic!.Id!
-        var url = NSURL(string:GetUrl("/reply?offset=\(0)&limit=\(self.replyPageSize)&query=topicid:\(id)"))
+        var url = NSURL(string:GetUrl("/reply?offset=\(0)&limit=\(self.replyPageSize)&query=topicid:\(id)&sortby=id&order=desc"))
         //获取JSON数据
         var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
         if data != nil {
