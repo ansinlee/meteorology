@@ -21,6 +21,13 @@ class ProfBBSViewController: UITableViewController {
         loadListData()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if tableView.respondsToSelector("layoutMargins") {
+            self.tableView.layoutMargins = UIEdgeInsetsZero
+        }
+        self.tableView.separatorInset = UIEdgeInsetsZero
+    }
     // MARK: load data
     func loadListData() {
         dispatch_async(dispatch_get_global_queue(0, 0)) {
@@ -92,52 +99,22 @@ class ProfBBSViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return CGFloat(120)
+        return 120
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if segue.destinationViewController is BBSNewDetailViewController {
+            if let desVC = segue.destinationViewController as? BBSNewDetailViewController {
+                if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                    desVC.topic = currentDataSource[indexPath.row]
+                }
+            }
+        }
     }
-    */
-
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if cell.respondsToSelector("layoutMargins") {
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
+    }
 }
