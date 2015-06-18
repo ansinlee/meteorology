@@ -30,6 +30,7 @@
 		3D7040021ABF155400CEB590 /* PediaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */; };
 		3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */; };
 		3D92BB1A1ACFDD35002C5E3B /* PediaSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */; };
+		A9B97E9C1B331F3A00F2F736 /* BBSPublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaDetailViewController.swift; sourceTree = "<group>"; };
 		3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSTopic.swift; sourceTree = "<group>"; };
 		3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaSubject.swift; sourceTree = "<group>"; };
+		A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSPublishViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				3D3A5B9C1ABD605100BBD67F /* BBSViewController.swift */,
 				3D6649271B2241DE0079A3DF /* BBSDetailViewController.swift */,
 				3D66493D1B2DCA170079A3DF /* BBSReplyListView.swift */,
+				A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */,
 			);
 			name = BBS;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9B97E9C1B331F3A00F2F736 /* BBSPublishViewController.swift in Sources */,
 				3D66493C1B2DC7570079A3DF /* BBSReply.swift in Sources */,
 				3D3A5BC21ABDCC3300BBD67F /* PediaSearchViewController.swift in Sources */,
 				3D6649281B2241DE0079A3DF /* BBSDetailViewController.swift in Sources */,
