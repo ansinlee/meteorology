@@ -36,3 +36,13 @@ class User {
         self.Nick = data?.objectForKey("Nick") as? String
     }
 }
+
+var currentUser: User!
+
+func GetCurrentUser() ->User {
+    if (currentUser != nil) {
+        return currentUser
+    }
+    currentUser = User(id: 1, icon: "http://d.hiphotos.baidu.com/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=137b6726d12a283457ab3e593adca28f/241f95cad1c8a786ba353d356209c93d70cf50e9.jpg", nick: "jln")
+    return currentUser
+}

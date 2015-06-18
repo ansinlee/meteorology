@@ -39,5 +39,6 @@ class Reply {
         self.TopicId = (data?.objectForKey("Topicid") as! NSNumber).intValue
         self.Time = GetGoDate(data?.objectForKey("Createtime") as! String)
         self.Content = data?.objectForKey("Content") as? String
+        self.Creator = User(data: data?.objectForKey("Creator"))
     }
 }
