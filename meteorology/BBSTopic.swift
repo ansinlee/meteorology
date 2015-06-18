@@ -78,12 +78,13 @@ class TopicDetailContent {
             return
         }
         self.ItemList  = []
-        var list:[AnyObject] = data as! [AnyObject]
-        for i in 0...list.count-1 {
-            if list[i].objectForKey("type") as! NSNumber == 0 {
-                self.ItemList?.append(TopicDetailItem(type: TopicDetailItemType.Text, data: list[i].objectForKey("data")as? String))
-            } else if list[i].objectForKey("type") as! NSNumber == 1 {
-                self.ItemList?.append(TopicDetailItem(type: TopicDetailItemType.Image, data: list[i].objectForKey("data")as? String))
+        if let list = data as? [AnyObject] {
+            for i in 0...list.count-1 {
+                if list[i].objectForKey("type") as! NSNumber == 0 {
+                    self.ItemList?.append(TopicDetailItem(type: TopicDetailItemType.Text, data: list[i].objectForKey("data")as? String))
+                } else if list[i].objectForKey("type") as! NSNumber == 1 {
+                    self.ItemList?.append(TopicDetailItem(type: TopicDetailItemType.Image, data: list[i].objectForKey("data")as? String))
+                }
             }
         }
     }

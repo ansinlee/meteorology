@@ -33,6 +33,9 @@
 		4576ABD77E128CB121B5B874 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B57159E3803D7A74D439B72 /* libPods.a */; };
 		A9B97E9C1B331F3A00F2F736 /* BBSPublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */; };
 		B6B1F6EE1B33359000898AE8 /* BBSNewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1F6ED1B33359000898AE8 /* BBSNewDetailViewController.swift */; };
+		B6B1F6F01B33521C00898AE8 /* ProfMsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1F6EF1B33521C00898AE8 /* ProfMsgViewController.swift */; };
+		B6B1F6F21B33522B00898AE8 /* ProfBBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1F6F11B33522B00898AE8 /* ProfBBSViewController.swift */; };
+		B6B1F6F41B33524000898AE8 /* ProfTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1F6F31B33524000898AE8 /* ProfTopicViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,9 @@
 		A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSPublishViewController.swift; sourceTree = "<group>"; };
 		B6B1F6EA1B33311800898AE8 /* meteorology-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "meteorology-Bridging-Header.h"; sourceTree = "<group>"; };
 		B6B1F6ED1B33359000898AE8 /* BBSNewDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSNewDetailViewController.swift; sourceTree = "<group>"; };
+		B6B1F6EF1B33521C00898AE8 /* ProfMsgViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfMsgViewController.swift; sourceTree = "<group>"; };
+		B6B1F6F11B33522B00898AE8 /* ProfBBSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfBBSViewController.swift; sourceTree = "<group>"; };
+		B6B1F6F31B33524000898AE8 /* ProfTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfTopicViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +216,9 @@
 			isa = PBXGroup;
 			children = (
 				3D3A5B9E1ABD606300BBD67F /* ProfViewController.swift */,
+				B6B1F6EF1B33521C00898AE8 /* ProfMsgViewController.swift */,
+				B6B1F6F11B33522B00898AE8 /* ProfBBSViewController.swift */,
+				B6B1F6F31B33524000898AE8 /* ProfTopicViewController.swift */,
 			);
 			name = Prof;
 			sourceTree = "<group>";
@@ -375,12 +384,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9B97E9C1B331F3A00F2F736 /* BBSPublishViewController.swift in Sources */,
+				B6B1F6F41B33524000898AE8 /* ProfTopicViewController.swift in Sources */,
 				3D66493C1B2DC7570079A3DF /* BBSReply.swift in Sources */,
 				3D3A5BC21ABDCC3300BBD67F /* PediaSearchViewController.swift in Sources */,
 				3D6649281B2241DE0079A3DF /* BBSDetailViewController.swift in Sources */,
 				B6B1F6EE1B33359000898AE8 /* BBSNewDetailViewController.swift in Sources */,
 				3D66493E1B2DCA170079A3DF /* BBSReplyListView.swift in Sources */,
 				3D3A5B991ABD5A9900BBD67F /* MainViewController.swift in Sources */,
+				B6B1F6F21B33522B00898AE8 /* ProfBBSViewController.swift in Sources */,
 				3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */,
 				3D3A5B9B1ABD601900BBD67F /* PediaViewController.swift in Sources */,
 				3D92BB1A1ACFDD35002C5E3B /* PediaSubject.swift in Sources */,
@@ -389,6 +400,7 @@
 				3D703FFC1ABF0F6C00CEB590 /* PediaListProvider.swift in Sources */,
 				3D3A5B9F1ABD606300BBD67F /* ProfViewController.swift in Sources */,
 				3D66492A1B2C11530079A3DF /* Util.swift in Sources */,
+				B6B1F6F01B33521C00898AE8 /* ProfMsgViewController.swift in Sources */,
 				3D3A5B5C1AB70F4B00BBD67F /* AppDelegate.swift in Sources */,
 				3D3A5B9D1ABD605100BBD67F /* BBSViewController.swift in Sources */,
 				3D7040021ABF155400CEB590 /* PediaDetailViewController.swift in Sources */,

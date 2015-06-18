@@ -75,7 +75,7 @@ class BBSNewDetailViewController: UIViewController {
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.beginUpdates()
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
                 self.tableView.endUpdates()
             }
         }
