@@ -75,7 +75,6 @@ class BBSNewDetailViewController: UIViewController {
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
-                //self.tableView.reloadData()
             }
         }
     }
@@ -109,7 +108,6 @@ class BBSNewDetailViewController: UIViewController {
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
-                //self.tableView.reloadData()
             }
         }
     }
@@ -197,6 +195,9 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource {
             return UITableViewCell()
         }
         if let cell = tableView.dequeueReusableCellWithIdentifier("replycell", forIndexPath: indexPath) as? UITableViewCell {
+            if replyListData.count < indexPath.row {
+                return UITableViewCell()
+            }
             let replay = replyListData[indexPath.row]
             if replay.Creator == nil || replay.Creator!.Icon == nil {
                 (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
@@ -241,8 +242,9 @@ extension BBSNewDetailViewController:UITextFieldDelegate {
                     if err == nil {
                         dispatch_async(dispatch_get_main_queue()) {
                             self.tableView.contentOffset = CGPointZero
-                            self.loadReplyListData()
                             textField.text = ""
+                            //self.tableView.reloadData()
+                            self.loadReplyListData()
                         }
                     }
                 })

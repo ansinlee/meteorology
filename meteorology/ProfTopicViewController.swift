@@ -1,5 +1,5 @@
 //
-//  ProfTopicViewController.swift
+//  ProfBBSViewController.swift
 //  meteorology
 //
 //  Created by sunsing on 6/19/15.
@@ -9,15 +9,55 @@
 import UIKit
 
 class ProfTopicViewController: UITableViewController {
-
+    var currentDataSource:[Topic] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        loadListData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if tableView.respondsToSelector("layoutMargins") {
+            self.tableView.layoutMargins = UIEdgeInsetsZero
+        }
+        self.tableView.separatorInset = UIEdgeInsetsZero
+    }
+    // MARK: load data
+    func loadListData() {
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
+            var url = NSURL(string:GetUrl("/topic?offset=\(0)&limit=\(10)&query=creatorid:\(GetCurrentUser().Id!)"))
+            //获取JSON数据
+            var dataList:[Topic] = []
+            var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
+            if data != nil {
+                var json:AnyObject = NSJSONSerialization.JSONObjectWithData(data!,options:NSJSONReadingOptions.AllowFragments,error:nil)!
+                
+                //解析获取JSON字段值
+                var errcode:NSNumber = json.objectForKey("errcode") as! NSNumber //json结构字段名。
+                var errmsg:String? = json.objectForKey("errmsg") as? String
+                var retdata:NSArray? = json.objectForKey("data") as? NSArray
+                NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
+                
+                if errcode == 0 && retdata != nil {
+                    var list = retdata!
+                    var len = list.count-1
+                    for i in 0...len {
+                        var subject = Topic(data: list[i])
+                        dataList.append(subject)
+                    }
+                }
+            }
+            self.currentDataSource = dataList
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,62 +70,51 @@ class ProfTopicViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return self.currentDataSource.count
     }
 
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("topiccell", forIndexPath: indexPath) as! UITableViewCell
+        let topic = currentDataSource[indexPath.row]
+        if topic.Creator == nil || topic.Creator!.Icon == nil {
+            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+        } else {
+            dispatch_async(dispatch_get_global_queue(0, 0)) {
+                var data = NSData(contentsOfURL: NSURL(string: topic.Creator!.Icon!)!)
+                dispatch_async(dispatch_get_main_queue()) {
+                    if data != nil {
+                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(data: data!)
+                    } else {
+                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+                    }
+                }
+            }
+        }
+        (cell.viewWithTag(2) as! UILabel).text = topic.Creator?.Nick ?? "匿名用户"
+        (cell.viewWithTag(3) as! UILabel).text = topic.Time
+        (cell.viewWithTag(4) as! UILabel).text = topic.Title
+        (cell.viewWithTag(5) as! UILabel).text = topic.Abstract
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 120
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if segue.destinationViewController is BBSNewDetailViewController {
+            if let desVC = segue.destinationViewController as? BBSNewDetailViewController {
+                if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                    desVC.topic = currentDataSource[indexPath.row]
+                }
+            }
+        }
     }
-    */
-
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if cell.respondsToSelector("layoutMargins") {
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
+    }
 }
