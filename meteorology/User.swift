@@ -43,6 +43,34 @@ func GetCurrentUser() ->User {
     if (currentUser != nil) {
         return currentUser
     }
-    currentUser = User(id: 1, icon: "http://d.hiphotos.baidu.com/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=137b6726d12a283457ab3e593adca28f/241f95cad1c8a786ba353d356209c93d70cf50e9.jpg", nick: "jln")
+    let ud = NSUserDefaults.standardUserDefaults()
+    var id = ud.integerForKey("User.Id")
+    if id <= 0 {
+        currentUser = User(id: 0, icon: "", nick: "游客")
+    } else {
+        let icon = ud.valueForKey("User.Icon") as! String
+        let nick = ud.valueForKey("User.Nick") as! String
+        currentUser = User(id: Int32(id), icon: icon, nick: nick)
+    }
+
+    NSLog("Init CurrentUser : \(currentUser.Id) \(currentUser.Nick) [\(currentUser.Icon)]")
     return currentUser
+}
+
+func CheckIsLogin()->Bool {
+    return GetCurrentUser().Id != 0
+}
+
+func Login(u: User) {
+    let ud = NSUserDefaults.standardUserDefaults()
+    ud.setInteger(Int(u.Id!), forKey: "User.Id")
+    ud.setValue(u.Icon, forKey: "User.Icon")
+    ud.setValue(u.Nick, forKey: "User.Nick")
+    currentUser = u
+}
+
+func Logout() {
+    let ud = NSUserDefaults.standardUserDefaults()
+    ud.setInteger(0, forKey: "User.Id")
+    currentUser = nil
 }

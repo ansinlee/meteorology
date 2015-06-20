@@ -208,7 +208,7 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource {
                         if data != nil {
                             (cell.viewWithTag(1) as! UIImageView).image = UIImage(data: data!)
                         } else {
-                            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+                            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default_icon")
                         }
                     }
                 }
