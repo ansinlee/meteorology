@@ -59,6 +59,7 @@ class PediaViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        PediaListProvider.loadClasses()
         super.viewDidLoad()
         self.initHeaderView()
         self.view.backgroundColor = UIColor.whiteColor()
@@ -127,7 +128,7 @@ class PediaViewController: UITableViewController {
         if currentSelectPedia > 0 {
             currentSelectPedia--
             collectionView.reloadData()
-            PediaListProvider.loadPediaData(currentSelectPedia+1) {
+            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia]) {
                 subjects in
                 self.activityIndicator.hidden = true
                 self.currentDataSource = subjects
@@ -143,7 +144,7 @@ class PediaViewController: UITableViewController {
         if currentSelectPedia < PediaListProvider.Classes.count - 1 {
             currentSelectPedia++
             collectionView.reloadData()
-            PediaListProvider.loadPediaData(currentSelectPedia+1) {
+            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia]) {
                 subjects in
                 self.activityIndicator.hidden = true
                 self.currentDataSource = subjects
@@ -159,7 +160,7 @@ class PediaViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? UITableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("mainsubjectcell", forIndexPath: indexPath) as? UITableViewCell {
             let subject = currentDataSource[indexPath.row]
             if subject.Img == nil {
                 (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")

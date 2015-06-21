@@ -169,7 +169,7 @@ class BBSViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? UITableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("maintopiccell", forIndexPath: indexPath) as? UITableViewCell {
             let subject = currentDataSource[indexPath.row]
             if subject.Creator == nil || subject.Creator!.Icon == nil {
                 (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
@@ -275,7 +275,7 @@ extension BBSViewController:UICollectionViewDelegate,UICollectionViewDataSource 
         if currentSelectPedia != indexPath.item {
             currentSelectPedia = indexPath.item
             collectionView.reloadData()
-            loadListData(currentSelectPedia+1)
+            loadListData(PediaListProvider.ClassIds[currentSelectPedia])
         }
     }
 }

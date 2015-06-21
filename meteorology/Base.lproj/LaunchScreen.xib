@@ -27,6 +27,6 @@
         </view>
     </objects>
     <resources>
-        <image name="lanch_picture.jpg" width="852" height="640"/>
+        <image name="lanch_picture.jpg" width="427" height="640"/>
     </resources>
 </document>

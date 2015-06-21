@@ -143,7 +143,7 @@ class PediaDetailViewController: UIViewController {
     
     func loadDetailContent() {
         NSLog("详情 : \(self.subject?.Title)")
-        //定义获取json数据的接口地址，这里定义的是获取天气的API接口,还有一个好处，就是swift语句可以不用强制在每条语句结束的时候用";"
+        /*
         dispatch_async(dispatch_get_global_queue(0, 0)) {
             var id:Int32 = self.subject!.Id!
             var url = NSURL(string:GetUrl("/subject/\(id)"))
@@ -164,6 +164,8 @@ class PediaDetailViewController: UIViewController {
                 self.addContentView()
             }
         }
+        */
+        self.addContentView()
     }
 
     /*

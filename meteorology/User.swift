@@ -29,11 +29,26 @@ class User {
     
     init(data:AnyObject?) {
         if data == nil {
+            self.Id = 0
+            self.Icon = ""
+            self.Nick = "游客"
             return
         }
-        self.Id = (data?.objectForKey("Id") as! NSNumber).intValue
-        self.Icon = data?.objectForKey("Icon") as? String
-        self.Nick = data?.objectForKey("Nick") as? String
+        if let id: AnyObject = data?.objectForKey("Id") {
+            self.Id = (id as! NSNumber).intValue
+        } else {
+            self.Id = 0
+        }
+        if let icon: AnyObject = data?.objectForKey("Icon") {
+            self.Icon = icon as? String
+        } else {
+            self.Icon = ""
+        }
+        if let nick: AnyObject = data?.objectForKey("Nick") {
+            self.Nick = nick as? String
+        } else {
+            self.Nick = "游客"
+        }
     }
 }
 

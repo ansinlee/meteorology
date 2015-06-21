@@ -20,13 +20,13 @@
 		3D6649281B2241DE0079A3DF /* BBSDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649271B2241DE0079A3DF /* BBSDetailViewController.swift */; };
 		3D66492A1B2C11530079A3DF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649291B2C11530079A3DF /* Util.swift */; };
 		3D6649341B2D523D0079A3DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6649331B2D523D0079A3DF /* Main.storyboard */; };
-		3D66493A1B2D9BE10079A3DF /* lanch_picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D6649391B2D9BE10079A3DF /* lanch_picture.jpg */; };
 		3D66493C1B2DC7570079A3DF /* BBSReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66493B1B2DC7570079A3DF /* BBSReply.swift */; };
 		3D66493E1B2DCA170079A3DF /* BBSReplyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66493D1B2DCA170079A3DF /* BBSReplyListView.swift */; };
 		3D6649401B2F01EE0079A3DF /* BBSReplyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D66493F1B2F01EE0079A3DF /* BBSReplyListTableViewCell.swift */; };
 		3D6649421B3583D00079A3DF /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649411B3583D00079A3DF /* RegistViewController.swift */; };
 		3D6649441B35A64A0079A3DF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649431B35A64A0079A3DF /* LoginViewController.swift */; };
 		3D66494A1B35AFC20079A3DF /* ProfTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649491B35AFC20079A3DF /* ProfTableViewController.swift */; };
+		3D6649501B36E4CE0079A3DF /* lanch_picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D66494F1B36E4CE0079A3DF /* lanch_picture.jpg */; };
 		3D703FF11ABEBF0300CEB590 /* logo58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D703FEF1ABEBF0300CEB590 /* logo58x58.png */; };
 		3D703FF21ABEBF0300CEB590 /* btn_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D703FF01ABEBF0300CEB590 /* btn_search.png */; };
 		3D703FFC1ABF0F6C00CEB590 /* PediaListProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D703FFB1ABF0F6C00CEB590 /* PediaListProvider.swift */; };
@@ -70,13 +70,13 @@
 		3D6649271B2241DE0079A3DF /* BBSDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSDetailViewController.swift; sourceTree = "<group>"; };
 		3D6649291B2C11530079A3DF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		3D6649331B2D523D0079A3DF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		3D6649391B2D9BE10079A3DF /* lanch_picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = lanch_picture.jpg; path = images/lanch_picture.jpg; sourceTree = "<group>"; };
 		3D66493B1B2DC7570079A3DF /* BBSReply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSReply.swift; sourceTree = "<group>"; };
 		3D66493D1B2DCA170079A3DF /* BBSReplyListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSReplyListView.swift; sourceTree = "<group>"; };
 		3D66493F1B2F01EE0079A3DF /* BBSReplyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSReplyListTableViewCell.swift; sourceTree = "<group>"; };
 		3D6649411B3583D00079A3DF /* RegistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
 		3D6649431B35A64A0079A3DF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3D6649491B35AFC20079A3DF /* ProfTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfTableViewController.swift; sourceTree = "<group>"; };
+		3D66494F1B36E4CE0079A3DF /* lanch_picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = lanch_picture.jpg; path = images/lanch_picture.jpg; sourceTree = "<group>"; };
 		3D703FEF1ABEBF0300CEB590 /* logo58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo58x58.png; path = images/logo58x58.png; sourceTree = "<group>"; };
 		3D703FF01ABEBF0300CEB590 /* btn_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_search.png; path = images/btn_search.png; sourceTree = "<group>"; };
 		3D703FFB1ABF0F6C00CEB590 /* PediaListProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaListProvider.swift; sourceTree = "<group>"; };
@@ -169,7 +169,6 @@
 		3D3A5B591AB70F4B00BBD67F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3D6649391B2D9BE10079A3DF /* lanch_picture.jpg */,
 				3D703FEE1ABEBEE200CEB590 /* common */,
 				3D3A5B5A1AB70F4B00BBD67F /* Info.plist */,
 				B6B1F6EA1B33311800898AE8 /* meteorology-Bridging-Header.h */,
@@ -235,6 +234,7 @@
 		3D703FEE1ABEBEE200CEB590 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				3D66494F1B36E4CE0079A3DF /* lanch_picture.jpg */,
 				3D703FEF1ABEBF0300CEB590 /* logo58x58.png */,
 				3D703FF01ABEBF0300CEB590 /* btn_search.png */,
 			);
@@ -304,7 +304,7 @@
 				TargetAttributes = {
 					3D3A5B551AB70F4B00BBD67F = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = CX3SW7JBRE;
+						DevelopmentTeam = 99982VUDU5;
 					};
 					3D3A5B6A1AB70F4C00BBD67F = {
 						CreatedOnToolsVersion = 6.2;
@@ -339,7 +339,7 @@
 				3D703FF21ABEBF0300CEB590 /* btn_search.png in Resources */,
 				3D3A5B661AB70F4B00BBD67F /* LaunchScreen.xib in Resources */,
 				3D6649341B2D523D0079A3DF /* Main.storyboard in Resources */,
-				3D66493A1B2D9BE10079A3DF /* lanch_picture.jpg in Resources */,
+				3D6649501B36E4CE0079A3DF /* lanch_picture.jpg in Resources */,
 				3D3A5B631AB70F4B00BBD67F /* Images.xcassets in Resources */,
 				3D703FF11ABEBF0300CEB590 /* logo58x58.png in Resources */,
 			);
@@ -534,6 +534,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = meteorology/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "meteorology/meteorology-Bridging-Header.h";
@@ -549,6 +550,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = meteorology/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "meteorology/meteorology-Bridging-Header.h";
