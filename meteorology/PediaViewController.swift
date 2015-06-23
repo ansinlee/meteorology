@@ -162,16 +162,12 @@ class PediaViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("mainsubjectcell", forIndexPath: indexPath) as? UITableViewCell {
             let subject = currentDataSource[indexPath.row]
-            if subject.Img == nil {
-                (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
-            }
+            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
             dispatch_async(dispatch_get_global_queue(0, 0)) {
                 var data = NSData(contentsOfURL: NSURL(string: subject.Img!)!)
                 dispatch_async(dispatch_get_main_queue()) {
                     if data != nil {
                         (cell.viewWithTag(1) as! UIImageView).image = UIImage(data: data!)
-                    } else {
-                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
                     }
                 }
             }
