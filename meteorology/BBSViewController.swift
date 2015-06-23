@@ -56,7 +56,7 @@ class BBSViewController: UITableViewController {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicator.center = CGPoint(x: tableView.frame.width/2, y: tableView.frame.height/2)
         self.tableView.addSubview(activityIndicator)
-        self.loadListData(currentSelectPedia+1)
+        self.loadListData(PediaListProvider.ClassIds[currentSelectPedia])
         var leftSwipe = UISwipeGestureRecognizer(target: self, action: "swipeLeft")
         leftSwipe.direction = .Left
         self.tableView.addGestureRecognizer(leftSwipe)
@@ -110,7 +110,7 @@ class BBSViewController: UITableViewController {
         if currentSelectPedia > 0 {
             currentSelectPedia--
             collectionView.reloadData()
-             loadListData(currentSelectPedia+1)
+             loadListData(PediaListProvider.ClassIds[currentSelectPedia])
         }
     }
     
@@ -121,7 +121,7 @@ class BBSViewController: UITableViewController {
         if currentSelectPedia < PediaListProvider.Classes.count - 1 {
             currentSelectPedia++
             collectionView.reloadData()
-            loadListData(currentSelectPedia+1)
+            loadListData(PediaListProvider.ClassIds[currentSelectPedia])
         }
     }
 
@@ -213,7 +213,7 @@ class BBSViewController: UITableViewController {
 extension BBSViewController {
     
     @IBAction func unwindSegue(segue:UIStoryboardSegue) {
-        loadListData(currentSelectPedia+1)
+        loadListData(PediaListProvider.ClassIds[currentSelectPedia])
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

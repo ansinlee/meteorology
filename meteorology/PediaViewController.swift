@@ -68,7 +68,7 @@ class PediaViewController: UITableViewController {
         activityIndicator.center = CGPoint(x: tableView.frame.width/2, y: tableView.frame.height/2)
         activityIndicator.startAnimating()
         self.tableView.addSubview(activityIndicator)
-        PediaListProvider.loadPediaData(currentSelectPedia+1) {
+        PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia]) {
             subjects in
             self.activityIndicator.hidden = true
             self.currentDataSource = subjects
@@ -241,7 +241,7 @@ extension PediaViewController:UICollectionViewDelegate,UICollectionViewDataSourc
         if currentSelectPedia != indexPath.item {
             currentSelectPedia = indexPath.item
             collectionView.reloadData()
-            PediaListProvider.loadPediaData(currentSelectPedia+1) {
+            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia]) {
                 subjects in
                 self.activityIndicator.hidden = true
                 self.currentDataSource = subjects
