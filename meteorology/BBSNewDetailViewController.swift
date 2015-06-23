@@ -74,7 +74,7 @@ class BBSNewDetailViewController: UIViewController {
                 self.topic?.Content = TopicDetailContent(data: retdata?.objectForKey("Content"))
             }
             dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+                self.tableView.reloadData()
             }
         }
     }
@@ -107,7 +107,7 @@ class BBSNewDetailViewController: UIViewController {
                 NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
             }
             dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+                self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
             }
         }
     }
