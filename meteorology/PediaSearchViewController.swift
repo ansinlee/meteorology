@@ -38,7 +38,7 @@ class PediaSearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("mainsubjectcell", forIndexPath: indexPath) as? UITableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? UITableViewCell {
             let subject = currentDataSource[indexPath.row]
             if subject.Img == nil {
                 (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")

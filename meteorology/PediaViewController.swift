@@ -121,7 +121,7 @@ class PediaViewController: UITableViewController {
     @IBAction func onRefresh(sender: UIRefreshControl) {
         if sender.refreshing {
             currentPage = 0
-            PediaListProvider.loadPediaData(currentSelectPedia+1, page:currentPage) {
+            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
                 subjects in
                 sender.endRefreshing()
                 self.currentDataSource = subjects
@@ -176,7 +176,7 @@ class PediaViewController: UITableViewController {
                 println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
                 footView.hidden = false
                 isLoading = true
-                PediaListProvider.loadPediaData(currentSelectPedia+1, page:currentPage+1) {
+                PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage+1) {
                     subjects in
                     self.footView.hidden = true
                     self.currentPage++

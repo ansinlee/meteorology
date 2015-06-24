@@ -10,7 +10,7 @@ import UIKit
 
 class PediaListProvider {
     
-    static let pageSize = 7
+    static let pageSize = 10
     
     static var Classes = ["精选","风","雨雪","雷电","云","雾霜霾","其他"]
     static var ClassIds = [1,2,3,4,5,6,7]
