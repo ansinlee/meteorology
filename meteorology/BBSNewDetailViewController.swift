@@ -15,6 +15,9 @@ class BBSNewDetailViewController: UIViewController {
     var replyListData:[Reply] = []
     var replyCurrentPage = 0
     
+    // MARK: scrollview delagate
+    var isLoading = false
+    
     @IBOutlet weak var containerViewBottomConstraint:NSLayoutConstraint!
 
     @IBOutlet weak var tableView: UITableView!
@@ -22,7 +25,7 @@ class BBSNewDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadDetailContent()
-        self.loadReplyListData()
+        self.loadReplyListData(false)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -80,10 +83,15 @@ class BBSNewDetailViewController: UIViewController {
         }
     }
 
-    func loadReplyListData() {
-        self.replyListData = []
+    func loadReplyListData(readmore: Bool) {
+        if (!readmore) {
+            self.replyCurrentPage = 0
+            self.replyListData = []
+        }
+        
         var id:Int32 = self.topic.Id!
         dispatch_async(dispatch_get_global_queue(0, 0)) {
+            self.isLoading = true
             var url = NSURL(string:GetUrl("/reply?offset=\(self.replyCurrentPage*PediaListProvider.pageSize)&limit=\(PediaListProvider.pageSize)&query=topicid:\(id)&sortby=id&order=desc"))
             //获取JSON数据
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
@@ -95,6 +103,7 @@ class BBSNewDetailViewController: UIViewController {
                 var errmsg:String? = json.objectForKey("errmsg") as? String
                 var retdata:NSArray? = json.objectForKey("data") as? NSArray
                 
+                
                 if errcode == 0 && retdata != nil {
                     var list = retdata!
                     var len = list.count-1
@@ -103,8 +112,9 @@ class BBSNewDetailViewController: UIViewController {
                         self.replyListData.append(reply)
                         NSLog("add a reply \(reply)")
                     }
+                    self.replyCurrentPage++
                 }
-                
+                self.isLoading = false
                 NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
             }
             dispatch_async(dispatch_get_main_queue()) {
@@ -196,12 +206,12 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource,U
             return UITableViewCell()
         }
         if let cell = tableView.dequeueReusableCellWithIdentifier("replycell", forIndexPath: indexPath) as? UITableViewCell {
-            if replyListData.count < indexPath.row {
+            if replyListData.count <= indexPath.row {
                 return UITableViewCell()
             }
             let replay = replyListData[indexPath.row]
             if replay.Creator == nil || replay.Creator!.Icon == nil {
-                (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+                (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default_icon")
             } else {
                 dispatch_async(dispatch_get_global_queue(0, 0)) {
                     var data = NSData(contentsOfURL: NSURL(string: replay.Creator!.Icon!)!)
@@ -222,6 +232,17 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource,U
         return UITableViewCell()
     }
     
+    // MARK: scrollview delagate
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        return
+        //println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(replyCurrentPage*10) \(self.replyListData.count) \(isLoading)")
+        if (self.tableView != nil && scrollView == self.tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (self.replyCurrentPage)*PediaListProvider.pageSize == self.replyListData.count && !isLoading) {
+            //println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
+            if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {
+                self.loadReplyListData(true)
+            }
+        }
+    }
 }
 
 extension BBSNewDetailViewController:UITextFieldDelegate {
@@ -246,7 +267,7 @@ extension BBSNewDetailViewController:UITextFieldDelegate {
                             self.tableView.contentOffset = CGPointZero
                             textField.text = ""
                             //self.tableView.reloadData()
-                            self.loadReplyListData()
+                            self.loadReplyListData(false)
                         }
                     }
                 })

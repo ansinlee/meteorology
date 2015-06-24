@@ -78,7 +78,7 @@ class ProfTopicViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("topiccell", forIndexPath: indexPath) as! UITableViewCell
         let topic = currentDataSource[indexPath.row]
         if topic.Creator == nil || topic.Creator!.Icon == nil {
-            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default_icon")
         } else {
             dispatch_async(dispatch_get_global_queue(0, 0)) {
                 var data = NSData(contentsOfURL: NSURL(string: topic.Creator!.Icon!)!)
@@ -86,7 +86,7 @@ class ProfTopicViewController: UITableViewController {
                     if data != nil {
                         (cell.viewWithTag(1) as! UIImageView).image = UIImage(data: data!)
                     } else {
-                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "defaulticon")
+                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default_icon")
                     }
                 }
             }

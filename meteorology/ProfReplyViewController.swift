@@ -73,7 +73,7 @@ class ProfReplyViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("replycell", forIndexPath: indexPath) as! UITableViewCell
         let reply = currentDataSource[indexPath.row]
         if reply.Creator == nil || reply.Creator!.Icon == nil {
-            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+            (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default_icon")
         } else {
             dispatch_async(dispatch_get_global_queue(0, 0)) {
                 var data = NSData(contentsOfURL: NSURL(string: reply.Creator!.Icon!)!)
@@ -81,7 +81,7 @@ class ProfReplyViewController: UITableViewController {
                     if data != nil {
                         (cell.viewWithTag(1) as! UIImageView).image = UIImage(data: data!)
                     } else {
-                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default")
+                        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: "default_icon")
                     }
                 }
             }
