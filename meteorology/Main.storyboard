@@ -53,6 +53,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="otX-cL-AGf">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上拉加载更多" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYN-U1-cRU">
+                                    <rect key="frame" x="118" y="14" width="84" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JNX-MV-tZ5">
+                                    <rect key="frame" x="90" y="13" width="20" height="20"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="centerX" secondItem="OYN-U1-cRU" secondAttribute="centerX" id="0nG-dV-BgJ"/>
+                                <constraint firstItem="JNX-MV-tZ5" firstAttribute="centerY" secondItem="OYN-U1-cRU" secondAttribute="centerY" constant="0.5" id="TXa-An-lNQ"/>
+                                <constraint firstItem="OYN-U1-cRU" firstAttribute="leading" secondItem="JNX-MV-tZ5" secondAttribute="trailing" constant="8" id="dEK-on-1LS"/>
+                                <constraint firstAttribute="centerY" secondItem="OYN-U1-cRU" secondAttribute="centerY" id="oXK-Ge-jLj"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainsubjectcell" id="9Sy-fq-Oiz">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -145,6 +167,9 @@
                             <action selector="onRefresh:" destination="xEC-Eg-wO4" eventType="valueChanged" id="iGJ-fi-IhG"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <outlet property="footView" destination="otX-cL-AGf" id="yAk-on-WQb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIS-Qq-MFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1299,6 +1324,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfA-eI-O9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1222" y="-142"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vRz-aM-cjR">
+            <objects>
+                <viewController id="hET-wA-ITR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XS9-Jf-obc"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lr2-19-Vg9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pce-en-PvE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cOW-7N-4WL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

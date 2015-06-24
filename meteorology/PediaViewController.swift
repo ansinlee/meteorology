@@ -10,6 +10,8 @@ import UIKit
 
 class PediaViewController: UITableViewController {
 
+    @IBOutlet weak var footView: UIView!
+    
     let searchBtnWidth:CGFloat = 33
     let searchBtnHeight:CGFloat = 32
     
@@ -23,6 +25,8 @@ class PediaViewController: UITableViewController {
     var activityIndicator:UIActivityIndicatorView!
     
     var currentDataSource:[Subject] = []
+    
+    var currentPage = 0
     
     var currentSelectPedia = 0 {
         didSet {
@@ -62,13 +66,14 @@ class PediaViewController: UITableViewController {
         PediaListProvider.loadClasses()
         super.viewDidLoad()
         self.initHeaderView()
+        footView.hidden = true
         self.view.backgroundColor = UIColor.whiteColor()
-        tableView.tableFooterView = UIView()
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicator.center = CGPoint(x: tableView.frame.width/2, y: tableView.frame.height/2)
         activityIndicator.startAnimating()
         self.tableView.addSubview(activityIndicator)
-        PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia]) {
+        currentPage = 0
+        PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
             subjects in
             self.activityIndicator.hidden = true
             self.currentDataSource = subjects
@@ -114,7 +119,15 @@ class PediaViewController: UITableViewController {
     // MARK: control methods
     
     @IBAction func onRefresh(sender: UIRefreshControl) {
-        sender.endRefreshing()
+        if sender.refreshing {
+            currentPage = 0
+            PediaListProvider.loadPediaData(currentSelectPedia+1, page:currentPage) {
+                subjects in
+                sender.endRefreshing()
+                self.currentDataSource = subjects
+                self.tableView.reloadData()
+            }
+        }
     }
     
     @IBAction func onSearch(sender: AnyObject) {
@@ -128,7 +141,8 @@ class PediaViewController: UITableViewController {
         if currentSelectPedia > 0 {
             currentSelectPedia--
             collectionView.reloadData()
-            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia]) {
+            currentPage = 0
+            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
                 subjects in
                 self.activityIndicator.hidden = true
                 self.currentDataSource = subjects
@@ -144,7 +158,8 @@ class PediaViewController: UITableViewController {
         if currentSelectPedia < PediaListProvider.Classes.count - 1 {
             currentSelectPedia++
             collectionView.reloadData()
-            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia]) {
+            currentPage = 0
+            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
                 subjects in
                 self.activityIndicator.hidden = true
                 self.currentDataSource = subjects
@@ -152,6 +167,29 @@ class PediaViewController: UITableViewController {
             }
         }
     }
+    
+    // MARK: scrollview delagate 
+    var isLoading = false
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView == tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && currentPage*10 == self.currentDataSource.count && !isLoading {
+            if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {
+                println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
+                footView.hidden = false
+                isLoading = true
+                PediaListProvider.loadPediaData(currentSelectPedia+1, page:currentPage+1) {
+                    subjects in
+                    self.footView.hidden = true
+                    self.currentPage++
+                    self.isLoading = true
+                    for j in subjects {
+                        self.currentDataSource.append(j)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
     
     // MARK: tabelview delegate
     
@@ -237,7 +275,8 @@ extension PediaViewController:UICollectionViewDelegate,UICollectionViewDataSourc
         if currentSelectPedia != indexPath.item {
             currentSelectPedia = indexPath.item
             collectionView.reloadData()
-            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia]) {
+            currentPage = 0
+            PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia],page:currentPage) {
                 subjects in
                 self.activityIndicator.hidden = true
                 self.currentDataSource = subjects
