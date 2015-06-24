@@ -9,10 +9,13 @@
 import UIKit
 
 class BBSViewController: UITableViewController {
+    @IBOutlet weak var footView: UIView!
+
 
     var collectionView:UICollectionView!
     var currentDataSource:[Topic] = []
     
+    var currentPage = 0
     var currentSelectPedia = 0 {
         didSet {
             
@@ -52,11 +55,17 @@ class BBSViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initHeaderView()
+        self.footView.hidden = true
         tableView.tableFooterView = UIView()
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicator.center = CGPoint(x: tableView.frame.width/2, y: tableView.frame.height/2)
         self.tableView.addSubview(activityIndicator)
-        self.loadListData(PediaListProvider.ClassIds[currentSelectPedia])
+        self.loadListData(PediaListProvider.ClassIds[currentSelectPedia], page: currentPage) {
+            topics in
+            self.activityIndicator.hidden = true
+            self.currentDataSource = topics
+            self.tableView.reloadData()
+        }
         var leftSwipe = UISwipeGestureRecognizer(target: self, action: "swipeLeft")
         leftSwipe.direction = .Left
         self.tableView.addGestureRecognizer(leftSwipe)
@@ -100,7 +109,15 @@ class BBSViewController: UITableViewController {
     }
     
     @IBAction func onRefresh(sender: UIRefreshControl) {
-        sender.endRefreshing()
+        if sender.refreshing {
+            currentPage = 0
+            self.loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
+                topics in
+                sender.endRefreshing()
+                self.currentDataSource = topics
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func swipeRight() {
@@ -110,7 +127,13 @@ class BBSViewController: UITableViewController {
         if currentSelectPedia > 0 {
             currentSelectPedia--
             collectionView.reloadData()
-             loadListData(PediaListProvider.ClassIds[currentSelectPedia])
+            currentPage = 0
+            loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
+                topics in
+                self.activityIndicator.hidden = true
+                self.currentDataSource = topics
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -121,17 +144,23 @@ class BBSViewController: UITableViewController {
         if currentSelectPedia < PediaListProvider.Classes.count - 1 {
             currentSelectPedia++
             collectionView.reloadData()
-            loadListData(PediaListProvider.ClassIds[currentSelectPedia])
+            currentPage = 0
+            loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:self.currentPage) {
+                topics in
+                self.activityIndicator.hidden = true
+                self.currentDataSource = topics
+                self.tableView.reloadData()
+            }
         }
     }
 
     
     // MARK: load data
     
-    func loadListData(index: Int) {
+    func loadListData(index: Int, page:Int, completion:([Topic] -> Void)) {
         activityIndicator.startAnimating()
         dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/topic?offset=\(0)&limit=\(10)&query=classid:\(index)&sortby=id&order=desc"))
+            var url = NSURL(string:GetUrl("/topic?offset=\(page*PediaListProvider.pageSize)&limit=\(PediaListProvider.pageSize)&query=classid:\(index)&sortby=id&order=desc"))
             //获取JSON数据
             var dataList:[Topic] = []
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
@@ -153,17 +182,17 @@ class BBSViewController: UITableViewController {
                     }
                 }
             }
-            self.currentDataSource = dataList
+            //self.currentDataSource = dataList
             dispatch_async(dispatch_get_main_queue()) {
-                self.activityIndicator.hidden = true
-                self.tableView.reloadData()
+                completion(dataList)
+                //self.activityIndicator.hidden = true
+                //self.tableView.reloadData()
             }
         }
         //self.reloadData()
     }
     
     // MARK: tabelview delegate
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.currentDataSource.count
     }
@@ -208,12 +237,42 @@ class BBSViewController: UITableViewController {
 //            self.navigationController?.pushViewController(detailVC, animated: true)
 //        }
     }
+    
+    // MARK: scrollview delagate
+    var isLoading = false
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        //println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(currentPage*10) \(self.currentDataSource.count) \(isLoading)")
+        if scrollView == tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (currentPage+1)*PediaListProvider.pageSize == self.currentDataSource.count && !isLoading {
+            if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {
+                //println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
+                //footView.hidden = false
+                isLoading = true
+                self.loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage+1) {
+                    topics in
+                    //self.footView.hidden = true
+                    self.currentPage++
+                    self.isLoading = false
+                    for j in topics {
+                        self.currentDataSource.append(j)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+
 }
 
 extension BBSViewController {
     
     @IBAction func unwindSegue(segue:UIStoryboardSegue) {
-        loadListData(PediaListProvider.ClassIds[currentSelectPedia])
+        currentPage = 0
+        loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
+            topics in
+            self.activityIndicator.hidden = true
+            self.currentDataSource = topics
+            self.tableView.reloadData()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -275,7 +334,13 @@ extension BBSViewController:UICollectionViewDelegate,UICollectionViewDataSource 
         if currentSelectPedia != indexPath.item {
             currentSelectPedia = indexPath.item
             collectionView.reloadData()
-            loadListData(PediaListProvider.ClassIds[currentSelectPedia])
+            currentPage = 0
+            loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
+                topics in
+                self.activityIndicator.hidden = true
+                self.currentDataSource = topics
+                self.tableView.reloadData()
+            }
         }
     }
 }

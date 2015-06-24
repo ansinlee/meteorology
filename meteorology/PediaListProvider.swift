@@ -79,10 +79,10 @@ class PediaListProvider {
         }
     }
     
-    class func searchData(query: String, completion:([Subject] -> Void)) {
+    class func searchData(query: String, page:Int, completion:([Subject] -> Void)) {
         var dataList:[Subject] = []
         dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/subject?offset=\(0)&limit=\(self.pageSize)&query=title.contains:\(query)"))
+            var url = NSURL(string:GetUrl("/subject?offset=\(page*self.pageSize)&limit=\(self.pageSize)&query=title.contains:\(query)"))
             //获取JSON数据
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
             if data != nil {

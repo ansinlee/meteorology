@@ -11,6 +11,9 @@ import UIKit
 class PediaSearchViewController: UITableViewController, UISearchBarDelegate {
     
     var currentDataSource:[Subject] = []
+    var currentPage = 0
+    var searchText:String = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +21,14 @@ class PediaSearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        PediaListProvider.searchData(searchBar.text) {
+        currentPage = 0
+        searchText = searchBar.text
+        PediaListProvider.searchData(searchText, page: currentPage) {
             subjects in
             self.currentDataSource = subjects
             self.tableView.reloadData()
         }
+        searchBar.resignFirstResponder()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -67,6 +73,29 @@ class PediaSearchViewController: UITableViewController, UISearchBarDelegate {
             let subject = currentDataSource[indexPath.row]
             let detailVC = PediaDetailViewController(subject: subject)
             self.navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
+    
+    // MARK: scrollview delagate
+    var isLoading = false
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        //println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(currentPage*10) \(self.currentDataSource.count) \(isLoading)")
+        if scrollView == tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (currentPage+1)*PediaListProvider.pageSize == self.currentDataSource.count && !isLoading {
+            if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {
+                //println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
+                //footView.hidden = false
+                isLoading = true
+                PediaListProvider.searchData(self.searchText, page:self.currentPage+1) {
+                    subjects in
+                    //self.footView.hidden = true
+                    self.currentPage++
+                    self.isLoading = false
+                    for j in subjects {
+                        self.currentDataSource.append(j)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
 }

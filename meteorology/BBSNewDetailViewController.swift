@@ -13,6 +13,7 @@ class BBSNewDetailViewController: UIViewController {
     var topic: Topic!
     
     var replyListData:[Reply] = []
+    var replyCurrentPage = 0
     
     @IBOutlet weak var containerViewBottomConstraint:NSLayoutConstraint!
 
@@ -83,7 +84,7 @@ class BBSNewDetailViewController: UIViewController {
         self.replyListData = []
         var id:Int32 = self.topic.Id!
         dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/reply?offset=\(0)&limit=\(10)&query=topicid:\(id)&sortby=id&order=desc"))
+            var url = NSURL(string:GetUrl("/reply?offset=\(self.replyCurrentPage*PediaListProvider.pageSize)&limit=\(PediaListProvider.pageSize)&query=topicid:\(id)&sortby=id&order=desc"))
             //获取JSON数据
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
             if data != nil {
@@ -125,7 +126,7 @@ class BBSNewDetailViewController: UIViewController {
 
 }
 
-extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource {
+extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
@@ -220,6 +221,7 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    
 }
 
 extension BBSNewDetailViewController:UITextFieldDelegate {
