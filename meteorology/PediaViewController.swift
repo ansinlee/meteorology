@@ -171,16 +171,17 @@ class PediaViewController: UITableViewController {
     // MARK: scrollview delagate 
     var isLoading = false
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView == tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && currentPage*10 == self.currentDataSource.count && !isLoading {
+        //println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(currentPage*10) \(self.currentDataSource.count) \(isLoading)")
+        if scrollView == tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (currentPage+1)*PediaListProvider.pageSize == self.currentDataSource.count && !isLoading {
             if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {
-                println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
+                //println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
                 footView.hidden = false
                 isLoading = true
                 PediaListProvider.loadPediaData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage+1) {
                     subjects in
                     self.footView.hidden = true
                     self.currentPage++
-                    self.isLoading = true
+                    self.isLoading = false
                     for j in subjects {
                         self.currentDataSource.append(j)
                     }

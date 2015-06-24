@@ -49,9 +49,9 @@ class PediaListProvider {
     class func loadPediaData(index: Int, page:Int, completion:([Subject] -> Void)) {
         var dataList:[Subject] = []
         dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/subject?offset=\(page)&limit=\(self.pageSize)&query=classid:\(index)"))
+            var url = NSURL(string:GetUrl("/subject?offset=\(page*self.pageSize)&limit=\(self.pageSize)&query=classid:\(index)&sortby=id&order=desc"))
             if index == 1 {
-                url = NSURL(string:GetUrl("/subject?offset=\(page)&limit=\(self.pageSize)&query=isrcmmd:1"))
+                url = NSURL(string:GetUrl("/subject?offset=\(page*self.pageSize)&limit=\(self.pageSize)&query=isrcmmd:1&sortby=id&order=desc"))
             }
             //获取JSON数据
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
@@ -62,7 +62,7 @@ class PediaListProvider {
                 var errcode:NSNumber = json.objectForKey("errcode") as! NSNumber //json结构字段名。
                 var errmsg:String? = json.objectForKey("errmsg") as? String
                 var retdata:NSArray? = json.objectForKey("data") as? NSArray
-                NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
+                //NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
             
                 if errcode == 0 && retdata != nil {
                     var list = retdata!
