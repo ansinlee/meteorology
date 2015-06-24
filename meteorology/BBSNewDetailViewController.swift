@@ -136,7 +136,7 @@ class BBSNewDetailViewController: UIViewController {
 
 }
 
-extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate {
+extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
@@ -233,8 +233,7 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource,U
     }
     
     // MARK: scrollview delagate
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        return
+    func scrollViewDidScroll1(scrollView: UIScrollView) {
         //println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(replyCurrentPage*10) \(self.replyListData.count) \(isLoading)")
         if (self.tableView != nil && scrollView == self.tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (self.replyCurrentPage)*PediaListProvider.pageSize == self.replyListData.count && !isLoading) {
             //println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
