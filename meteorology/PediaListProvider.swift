@@ -46,12 +46,12 @@ class PediaListProvider {
         //}
     }
     
-    class func loadPediaData(index: Int, completion:([Subject] -> Void)) {
+    class func loadPediaData(index: Int, page:Int, completion:([Subject] -> Void)) {
         var dataList:[Subject] = []
         dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/subject?offset=\(0)&limit=\(self.pageSize)&query=classid:\(index)"))
+            var url = NSURL(string:GetUrl("/subject?offset=\(page)&limit=\(self.pageSize)&query=classid:\(index)"))
             if index == 1 {
-                url = NSURL(string:GetUrl("/subject?offset=\(0)&limit=\(self.pageSize)&query=isrcmmd:1"))
+                url = NSURL(string:GetUrl("/subject?offset=\(page)&limit=\(self.pageSize)&query=isrcmmd:1"))
             }
             //获取JSON数据
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
