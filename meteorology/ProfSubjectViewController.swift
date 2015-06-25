@@ -10,6 +10,7 @@ import UIKit
 
 class ProfSubjectViewController: UITableViewController {
     var currentDataSource:[Subject] = []
+    var currentPage = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,7 +19,7 @@ class ProfSubjectViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        loadListData()
+        loadListData(false)
     }
     
     override func viewDidLayoutSubviews() {
@@ -35,11 +36,15 @@ class ProfSubjectViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    func loadListData() {
+    func loadListData(readmore:Bool) {
         dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/subject?offset=\(0)&limit=\(10)&query=creatorid:\(GetCurrentUser().Id!)"))
-            //获取JSON数据
-            var dataList:[Subject] = []
+            self.isLoading = true
+            if !readmore {
+                self.currentDataSource = []
+                self.currentPage = 0
+            }
+            var url = NSURL(string:GetUrl("/subject?offset=\(PediaListProvider.pageSize*self.currentPage)&limit=\(PediaListProvider.pageSize)&query=creatorid:\(GetCurrentUser().Id!)"))
+            
             //获取JSON数据
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
             if data != nil {
@@ -56,13 +61,26 @@ class ProfSubjectViewController: UITableViewController {
                     var len = list.count-1
                     for i in 0...len {
                         var subject = Subject(data: list[i])
-                        dataList.append(subject)
+                        self.currentDataSource.append(subject)
                     }
+                    self.currentPage++
                 }
             }
-            self.currentDataSource = dataList
+            
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
+                self.isLoading = false
+            }
+        }
+    }
+    
+    // MARK: scrollview delagate
+    var isLoading = false
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        //println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(currentPage*10) \(self.currentDataSource.count) \(isLoading)")
+        if scrollView == tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && currentPage*PediaListProvider.pageSize == self.currentDataSource.count && !isLoading {
+            if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {
+                self.loadListData(true)
             }
         }
     }

@@ -29,11 +29,13 @@ class BBSNewDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.tableView.delegate = self
         super.viewWillAppear(animated)
         self.ka_startObservingKeyboardNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
+        self.tableView.delegate = nil
         super.viewWillDisappear(animated)
         self.ka_stopObservingKeyboardNotifications()
         //self.view.layoutIfNeeded()
@@ -233,8 +235,12 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     // MARK: scrollview delagate
-    func scrollViewDidScroll1(scrollView: UIScrollView) {
-        //println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(replyCurrentPage*10) \(self.replyListData.count) \(isLoading)")
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+//         println("77777777 ")
+        
+        println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(replyCurrentPage*10) \(self.replyListData.count) \(isLoading)")
+    
         if (self.tableView != nil && scrollView == self.tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (self.replyCurrentPage)*PediaListProvider.pageSize == self.replyListData.count && !isLoading) {
             //println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
             if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {

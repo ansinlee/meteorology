@@ -10,6 +10,7 @@ import UIKit
 
 class ProfReplyViewController: UITableViewController {
     var currentDataSource:[Reply] = []
+    var currentPage = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,7 +19,7 @@ class ProfReplyViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        loadListData()
+        loadListData(false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,11 +29,15 @@ class ProfReplyViewController: UITableViewController {
 
     // MARK: - Table view data source
     // MARK: load data
-    func loadListData() {
+    func loadListData(readmore:Bool) {
         dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/reply?offset=\(0)&limit=\(10)&query=creatorid:\(GetCurrentUser().Id!)&sortby=id&order=desc"))
+            self.isLoading = true
+            if !readmore {
+                self.currentDataSource = []
+                self.currentPage = 0
+            }
+            var url = NSURL(string:GetUrl("/reply?offset=\(PediaListProvider.pageSize*self.currentPage)&limit=\(PediaListProvider.pageSize)&query=creatorid:\(GetCurrentUser().Id!)&sortby=id&order=desc"))
             //获取JSON数据
-            var dataList:[Reply] = []
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
             if data != nil {
                 var json:AnyObject = NSJSONSerialization.JSONObjectWithData(data!,options:NSJSONReadingOptions.AllowFragments,error:nil)!
@@ -47,20 +52,32 @@ class ProfReplyViewController: UITableViewController {
                     var len = list.count-1
                     for i in 0...len {
                         var reply = Reply(data: list[i])
-                        dataList.append(reply)
+                        self.currentDataSource.append(reply)
                         NSLog("add a reply \(reply)")
                     }
+                    self.currentPage++
                 }
                 
                 NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
             }
-            self.currentDataSource = dataList
+            
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
+                self.isLoading = false
             }
         }
     }
     
+    // MARK: scrollview delagate
+    var isLoading = false
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        //println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(currentPage*10) \(self.currentDataSource.count) \(isLoading)")
+        if scrollView == tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && currentPage*PediaListProvider.pageSize == self.currentDataSource.count && !isLoading {
+            if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {
+                self.loadListData(true)
+            }
+        }
+    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
