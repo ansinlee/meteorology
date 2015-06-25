@@ -26,11 +26,12 @@
 		3D6649421B3583D00079A3DF /* RegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649411B3583D00079A3DF /* RegistViewController.swift */; };
 		3D6649441B35A64A0079A3DF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649431B35A64A0079A3DF /* LoginViewController.swift */; };
 		3D66494A1B35AFC20079A3DF /* ProfTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6649491B35AFC20079A3DF /* ProfTableViewController.swift */; };
-		3D703FF11ABEBF0300CEB590 /* logo58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D703FEF1ABEBF0300CEB590 /* logo58x58.png */; };
 		3D703FF21ABEBF0300CEB590 /* btn_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D703FF01ABEBF0300CEB590 /* btn_search.png */; };
 		3D703FFC1ABF0F6C00CEB590 /* PediaListProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D703FFB1ABF0F6C00CEB590 /* PediaListProvider.swift */; };
 		3D7040021ABF155400CEB590 /* PediaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */; };
 		3D7843391B3C42B200A22942 /* lanch_picture3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D7843381B3C42B200A22942 /* lanch_picture3.jpg */; };
+		3D78433B1B3C570B00A22942 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D78433A1B3C570B00A22942 /* logo.png */; };
+		3D7843431B3C62D700A22942 /* WeiboViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7843421B3C62D700A22942 /* WeiboViewController.swift */; };
 		3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */; };
 		3D92BB1A1ACFDD35002C5E3B /* PediaSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */; };
 		A918472E1B3AAEF400972B71 /* UIViewController+KeyboardAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A918472D1B3AAEF400972B71 /* UIViewController+KeyboardAdditions.m */; };
@@ -76,11 +77,12 @@
 		3D6649411B3583D00079A3DF /* RegistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistViewController.swift; sourceTree = "<group>"; };
 		3D6649431B35A64A0079A3DF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3D6649491B35AFC20079A3DF /* ProfTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfTableViewController.swift; sourceTree = "<group>"; };
-		3D703FEF1ABEBF0300CEB590 /* logo58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo58x58.png; path = images/logo58x58.png; sourceTree = "<group>"; };
 		3D703FF01ABEBF0300CEB590 /* btn_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_search.png; path = images/btn_search.png; sourceTree = "<group>"; };
 		3D703FFB1ABF0F6C00CEB590 /* PediaListProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaListProvider.swift; sourceTree = "<group>"; };
 		3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaDetailViewController.swift; sourceTree = "<group>"; };
 		3D7843381B3C42B200A22942 /* lanch_picture3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = lanch_picture3.jpg; path = images/lanch_picture3.jpg; sourceTree = "<group>"; };
+		3D78433A1B3C570B00A22942 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = images/logo.png; sourceTree = "<group>"; };
+		3D7843421B3C62D700A22942 /* WeiboViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeiboViewController.swift; sourceTree = "<group>"; };
 		3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSTopic.swift; sourceTree = "<group>"; };
 		3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaSubject.swift; sourceTree = "<group>"; };
 		8B57159E3803D7A74D439B72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +232,7 @@
 				3D6649411B3583D00079A3DF /* RegistViewController.swift */,
 				3D6649431B35A64A0079A3DF /* LoginViewController.swift */,
 				3D6649491B35AFC20079A3DF /* ProfTableViewController.swift */,
+				3D7843421B3C62D700A22942 /* WeiboViewController.swift */,
 			);
 			name = Prof;
 			sourceTree = "<group>";
@@ -237,8 +240,8 @@
 		3D703FEE1ABEBEE200CEB590 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				3D78433A1B3C570B00A22942 /* logo.png */,
 				3D7843381B3C42B200A22942 /* lanch_picture3.jpg */,
-				3D703FEF1ABEBF0300CEB590 /* logo58x58.png */,
 				3D703FF01ABEBF0300CEB590 /* btn_search.png */,
 			);
 			name = common;
@@ -341,8 +344,8 @@
 				3D703FF21ABEBF0300CEB590 /* btn_search.png in Resources */,
 				3D3A5B661AB70F4B00BBD67F /* LaunchScreen.xib in Resources */,
 				3D6649341B2D523D0079A3DF /* Main.storyboard in Resources */,
+				3D78433B1B3C570B00A22942 /* logo.png in Resources */,
 				3D3A5B631AB70F4B00BBD67F /* Images.xcassets in Resources */,
-				3D703FF11ABEBF0300CEB590 /* logo58x58.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +382,7 @@
 				3D6649261B223A7D0079A3DF /* User.swift in Sources */,
 				3D6649401B2F01EE0079A3DF /* BBSReplyListTableViewCell.swift in Sources */,
 				3D703FFC1ABF0F6C00CEB590 /* PediaListProvider.swift in Sources */,
+				3D7843431B3C62D700A22942 /* WeiboViewController.swift in Sources */,
 				3D3A5B9F1ABD606300BBD67F /* ProfViewController.swift in Sources */,
 				3D66492A1B2C11530079A3DF /* Util.swift in Sources */,
 				B6B1F6F01B33521C00898AE8 /* ProfReplyViewController.swift in Sources */,

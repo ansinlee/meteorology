@@ -381,6 +381,24 @@
                                             <segue destination="jg7-XF-cXB" kind="show" id="KJv-TE-AyE"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="zjv-Oc-Sog">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zjv-Oc-Sog" id="iyP-KI-A1r">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微   博" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIt-A8-VGg">
+                                                    <rect key="frame" x="21" y="11" width="49" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="rOk-Lh-FCQ" kind="show" id="3lg-7p-Juw"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="6oN-QA-hsP" style="IBUITableViewCellStyleDefault" id="VqE-7X-YlI">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -397,6 +415,24 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="mi0-JS-tyx" kind="show" id="Qha-xH-xYy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Uel-l0-Kne">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uel-l0-Kne" id="pOM-Nm-BB9">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" 关    于" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6O-Ky-0TV">
+                                                    <rect key="frame" x="15" y="0.0" width="317" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="7Hz-4D-Rnr" kind="show" id="IGZ-aq-R1G"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -461,6 +497,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eZm-MI-Iqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="215" y="1364"/>
+        </scene>
+        <!--微博-->
+        <scene sceneID="KCE-Zf-D7D">
+            <objects>
+                <viewController id="rOk-Lh-FCQ" userLabel="微博" customClass="WeiboViewController" customModule="meteorology" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fv2-ng-TfX"/>
+                        <viewControllerLayoutGuide type="bottom" id="fHs-hI-W2W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="16s-ub-STT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S85-Ax-abd">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="微博" id="nLt-fV-2Gu"/>
+                    <connections>
+                        <outlet property="weiboWebView" destination="S85-Ax-abd" id="tMz-fI-zem"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jfh-1C-WtP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-830" y="1388"/>
+        </scene>
+        <!--关于-->
+        <scene sceneID="ZLe-40-MkM">
+            <objects>
+                <viewController id="7Hz-4D-Rnr" userLabel="关于" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vuV-49-DGB"/>
+                        <viewControllerLayoutGuide type="bottom" id="E4n-vm-7EA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gRr-Nc-1Gg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y5v-CI-Wcv">
+                                <rect key="frame" x="96" y="83" width="128" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="气象互动百科" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IE-LV-cM7">
+                                <rect key="frame" x="80" y="224" width="110" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="v1.0.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMh-xH-qsm">
+                                <rect key="frame" x="198" y="226" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="       本软件上的所有图片和资料均来自网络，仅供个人学习和研究使用，不得用于任何商业用途。如有侵犯您商标权、著作权或其他合法权利的，请联系我们并按照网站规定提供相关证明材料，我们将在第一时间对此进行核实并处理。" lineBreakMode="characterWrap" numberOfLines="15" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoy-6P-vLR">
+                                <rect key="frame" x="40" y="266" width="240" height="167"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="3"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="© 2015 阜阳市气象局 版权所有" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aol-hR-w5U">
+                                <rect key="frame" x="62" y="485" width="196" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="关于" id="3RR-J3-ftT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QvZ-fj-wHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-186" y="1364"/>
         </scene>
         <!--登录-->
         <scene sceneID="5HU-uO-HRg">
@@ -1365,6 +1478,7 @@
     <resources>
         <image name="default" width="109" height="110"/>
         <image name="default_icon" width="220" height="220"/>
+        <image name="logo.png" width="184" height="184"/>
         <image name="tab_col" width="26" height="26"/>
         <image name="tab_explore" width="30" height="30"/>
         <image name="tab_user" width="24" height="24"/>
