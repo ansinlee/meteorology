@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanch_picture.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Bgt-Sm-HZ0">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanch_picture3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Bgt-Sm-HZ0">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
             </subviews>
@@ -27,6 +27,6 @@
         </view>
     </objects>
     <resources>
-        <image name="lanch_picture.jpg" width="427" height="640"/>
+        <image name="lanch_picture3.jpg" width="399" height="576"/>
     </resources>
 </document>

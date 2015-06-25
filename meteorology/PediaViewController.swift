@@ -31,9 +31,9 @@ class PediaViewController: UITableViewController {
     var currentSelectPedia = 0 {
         didSet {
             
-            if CGFloat(currentSelectPedia*60) > collectionView.frame.width/2 {
-                var offset = CGFloat(currentSelectPedia*60) -  collectionView.frame.width/2
-                if collectionView.contentSize.width - offset > collectionView.frame.width - 60 {
+            if CGFloat(currentSelectPedia*70) > collectionView.frame.width/2 {
+                var offset = CGFloat(currentSelectPedia*70) -  collectionView.frame.width/2
+                if collectionView.contentSize.width - offset > collectionView.frame.width - 70 {
                     collectionView.contentOffset = CGPointMake(offset , 0)
                 }
             }
@@ -95,7 +95,7 @@ class PediaViewController: UITableViewController {
         let flowLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
-        flowLayout.itemSize = CGSizeMake(60, 30)
+        flowLayout.itemSize = CGSizeMake(72, 30)
         flowLayout.scrollDirection = .Horizontal
         collectionView = UICollectionView(frame: CGRectMake(0, 0, tableView.frame.size.width, 30), collectionViewLayout: flowLayout)
         collectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "cell")
@@ -242,7 +242,7 @@ extension PediaViewController:UICollectionViewDelegate,UICollectionViewDataSourc
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as? UICollectionViewCell {
             var underLine:UIView? = cell.viewWithTag(2)
             if underLine == nil {
-                underLine = UIView(frame: CGRectMake(0, 28, 60, 2))
+                underLine = UIView(frame: CGRectMake(0, 28, 70, 2))
                 underLine!.backgroundColor = UIColor.redColor()
                 underLine!.hidden = true
                 underLine!.tag = 2
@@ -250,7 +250,7 @@ extension PediaViewController:UICollectionViewDelegate,UICollectionViewDataSourc
             }
             var label:UILabel? = cell.viewWithTag(1) as? UILabel
             if label == nil {
-                label = UILabel(frame: CGRectMake(0, 0, 60, 30))
+                label = UILabel(frame: CGRectMake(0, 0, 70, 30))
                 label!.textColor = UIColor.darkTextColor()
                 label!.tag = 1
                 label!.textAlignment = .Center
