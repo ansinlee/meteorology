@@ -70,11 +70,13 @@ class SubjectDetailContent {
         }
         self.ItemList  = []
         var list:[AnyObject] = data as! [AnyObject]
-        for i in 0...list.count-1 {
-            if list[i].objectForKey("type") as! NSNumber == 0 {
-                self.ItemList?.append(SubjectDetailItem(type: SubjectDetailItemType.Text, data: list[i].objectForKey("data")as? String))
-            } else if list[i].objectForKey("type") as! NSNumber == 1 {
-                self.ItemList?.append(SubjectDetailItem(type: SubjectDetailItemType.Image, data: list[i].objectForKey("data")as? String))
+        if list.count > 0 {
+            for i in 0...list.count-1 {
+                if list[i].objectForKey("type") as! NSNumber == 0 {
+                    self.ItemList?.append(SubjectDetailItem(type: SubjectDetailItemType.Text, data: list[i].objectForKey("data")as? String))
+                } else if list[i].objectForKey("type") as! NSNumber == 1 {
+                    self.ItemList?.append(SubjectDetailItem(type: SubjectDetailItemType.Image, data: list[i].objectForKey("data")as? String))
+                }
             }
         }
     }

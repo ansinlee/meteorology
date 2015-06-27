@@ -381,24 +381,6 @@
                                             <segue destination="jg7-XF-cXB" kind="show" id="KJv-TE-AyE"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="zjv-Oc-Sog">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zjv-Oc-Sog" id="iyP-KI-A1r">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微   博" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIt-A8-VGg">
-                                                    <rect key="frame" x="21" y="0.0" width="270" height="43.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="rOk-Lh-FCQ" kind="show" id="3lg-7p-Juw"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="6oN-QA-hsP" style="IBUITableViewCellStyleDefault" id="VqE-7X-YlI">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -497,34 +479,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eZm-MI-Iqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="215" y="1364"/>
-        </scene>
-        <!--微博-->
-        <scene sceneID="KCE-Zf-D7D">
-            <objects>
-                <viewController id="rOk-Lh-FCQ" userLabel="微博" customClass="WeiboViewController" customModule="meteorology" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Fv2-ng-TfX"/>
-                        <viewControllerLayoutGuide type="bottom" id="fHs-hI-W2W"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="16s-ub-STT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S85-Ax-abd">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="微博" id="nLt-fV-2Gu"/>
-                    <connections>
-                        <outlet property="weiboWebView" destination="S85-Ax-abd" id="tMz-fI-zem"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jfh-1C-WtP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-830" y="1388"/>
         </scene>
         <!--关于-->
         <scene sceneID="ZLe-40-MkM">
@@ -1456,23 +1410,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfA-eI-O9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1309" y="-159"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="vRz-aM-cjR">
-            <objects>
-                <viewController id="hET-wA-ITR" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XS9-Jf-obc"/>
-                        <viewControllerLayoutGuide type="bottom" id="Lr2-19-Vg9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pce-en-PvE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cOW-7N-4WL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

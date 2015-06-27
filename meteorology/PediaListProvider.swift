@@ -50,9 +50,11 @@ class PediaListProvider {
         var dataList:[Subject] = []
         dispatch_async(dispatch_get_global_queue(0, 0)) {
             var url = NSURL(string:GetUrl("/subject?offset=\(page*self.pageSize)&limit=\(self.pageSize)&query=classid:\(index)&sortby=id&order=desc"))
+            /*
             if index == 1 {
                 url = NSURL(string:GetUrl("/subject?offset=\(page*self.pageSize)&limit=\(self.pageSize)&query=isrcmmd:1&sortby=id&order=desc"))
             }
+*/
             //获取JSON数据
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
             if data != nil {
