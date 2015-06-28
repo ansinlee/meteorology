@@ -31,6 +31,7 @@
 		3D7040021ABF155400CEB590 /* PediaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */; };
 		3D7843391B3C42B200A22942 /* lanch_picture3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D7843381B3C42B200A22942 /* lanch_picture3.jpg */; };
 		3D78433B1B3C570B00A22942 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D78433A1B3C570B00A22942 /* logo.png */; };
+		3D7843451B3FABE800A22942 /* BBSListProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7843441B3FABE800A22942 /* BBSListProvider.swift */; };
 		3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */; };
 		3D92BB1A1ACFDD35002C5E3B /* PediaSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */; };
 		A918472E1B3AAEF400972B71 /* UIViewController+KeyboardAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A918472D1B3AAEF400972B71 /* UIViewController+KeyboardAdditions.m */; };
@@ -81,6 +82,7 @@
 		3D7040011ABF155400CEB590 /* PediaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaDetailViewController.swift; sourceTree = "<group>"; };
 		3D7843381B3C42B200A22942 /* lanch_picture3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = lanch_picture3.jpg; path = images/lanch_picture3.jpg; sourceTree = "<group>"; };
 		3D78433A1B3C570B00A22942 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = images/logo.png; sourceTree = "<group>"; };
+		3D7843441B3FABE800A22942 /* BBSListProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSListProvider.swift; sourceTree = "<group>"; };
 		3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSTopic.swift; sourceTree = "<group>"; };
 		3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaSubject.swift; sourceTree = "<group>"; };
 		8B57159E3803D7A74D439B72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +212,7 @@
 		3D3A5BBB1ABDC4CF00BBD67F /* BBS */ = {
 			isa = PBXGroup;
 			children = (
+				3D7843441B3FABE800A22942 /* BBSListProvider.swift */,
 				3D66493F1B2F01EE0079A3DF /* BBSReplyListTableViewCell.swift */,
 				3D3A5B9C1ABD605100BBD67F /* BBSViewController.swift */,
 				3D6649271B2241DE0079A3DF /* BBSDetailViewController.swift */,
@@ -374,6 +377,7 @@
 				B6B1F6F21B33522B00898AE8 /* ProfTopicViewController.swift in Sources */,
 				3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */,
 				3D3A5B9B1ABD601900BBD67F /* PediaViewController.swift in Sources */,
+				3D7843451B3FABE800A22942 /* BBSListProvider.swift in Sources */,
 				3D92BB1A1ACFDD35002C5E3B /* PediaSubject.swift in Sources */,
 				3D66494A1B35AFC20079A3DF /* ProfTableViewController.swift in Sources */,
 				3D6649261B223A7D0079A3DF /* User.swift in Sources */,

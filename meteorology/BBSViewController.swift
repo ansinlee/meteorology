@@ -53,6 +53,7 @@ class BBSViewController: UITableViewController {
     var activityIndicator:UIActivityIndicatorView!
     
     override func viewDidLoad() {
+        BBSListProvider.loadClasses()
         super.viewDidLoad()
         self.initHeaderView()
         self.footView.hidden = true
@@ -60,7 +61,7 @@ class BBSViewController: UITableViewController {
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicator.center = CGPoint(x: tableView.frame.width/2, y: tableView.frame.height/2)
         self.tableView.addSubview(activityIndicator)
-        self.loadListData(PediaListProvider.ClassIds[currentSelectPedia], page: currentPage) {
+        BBSListProvider.loadTopicData(BBSListProvider.ClassIds[currentSelectPedia], page: currentPage) {
             topics in
             self.activityIndicator.hidden = true
             self.currentDataSource = topics
@@ -111,7 +112,7 @@ class BBSViewController: UITableViewController {
     @IBAction func onRefresh(sender: UIRefreshControl) {
         if sender.refreshing {
             currentPage = 0
-            self.loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
+            BBSListProvider.loadTopicData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
                 topics in
                 sender.endRefreshing()
                 self.currentDataSource = topics
@@ -128,7 +129,7 @@ class BBSViewController: UITableViewController {
             currentSelectPedia--
             collectionView.reloadData()
             currentPage = 0
-            loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
+            BBSListProvider.loadTopicData(BBSListProvider.ClassIds[currentSelectPedia], page:currentPage) {
                 topics in
                 self.activityIndicator.hidden = true
                 self.currentDataSource = topics
@@ -145,7 +146,7 @@ class BBSViewController: UITableViewController {
             currentSelectPedia++
             collectionView.reloadData()
             currentPage = 0
-            loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:self.currentPage) {
+            BBSListProvider.loadTopicData(BBSListProvider.ClassIds[currentSelectPedia], page:self.currentPage) {
                 topics in
                 self.activityIndicator.hidden = true
                 self.currentDataSource = topics
@@ -154,43 +155,6 @@ class BBSViewController: UITableViewController {
         }
     }
 
-    
-    // MARK: load data
-    
-    func loadListData(index: Int, page:Int, completion:([Topic] -> Void)) {
-        activityIndicator.startAnimating()
-        dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/topic?offset=\(page*PediaListProvider.pageSize)&limit=\(PediaListProvider.pageSize)&query=classid:\(index)&sortby=id&order=desc"))
-            //获取JSON数据
-            var dataList:[Topic] = []
-            var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
-            if data != nil {
-                var json:AnyObject = NSJSONSerialization.JSONObjectWithData(data!,options:NSJSONReadingOptions.AllowFragments,error:nil)!
-                
-                //解析获取JSON字段值
-                var errcode:NSNumber = json.objectForKey("errcode") as! NSNumber //json结构字段名。
-                var errmsg:String? = json.objectForKey("errmsg") as? String
-                var retdata:NSArray? = json.objectForKey("data") as? NSArray
-                NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
-                
-                if errcode == 0 && retdata != nil {
-                    var list = retdata!
-                    var len = list.count-1
-                    for i in 0...len {
-                        var subject = Topic(data: list[i])
-                        dataList.append(subject)
-                    }
-                }
-            }
-            //self.currentDataSource = dataList
-            dispatch_async(dispatch_get_main_queue()) {
-                completion(dataList)
-                //self.activityIndicator.hidden = true
-                //self.tableView.reloadData()
-            }
-        }
-        //self.reloadData()
-    }
     
     // MARK: tabelview delegate
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -247,7 +211,7 @@ class BBSViewController: UITableViewController {
                 //println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
                 //footView.hidden = false
                 isLoading = true
-                self.loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage+1) {
+                BBSListProvider.loadTopicData(BBSListProvider.ClassIds[currentSelectPedia], page:currentPage+1) {
                     topics in
                     //self.footView.hidden = true
                     self.currentPage++
@@ -267,7 +231,7 @@ extension BBSViewController {
     
     @IBAction func unwindSegue(segue:UIStoryboardSegue) {
         currentPage = 0
-        loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
+        BBSListProvider.loadTopicData(BBSListProvider.ClassIds[currentSelectPedia], page:currentPage) {
             topics in
             self.activityIndicator.hidden = true
             self.currentDataSource = topics
@@ -335,7 +299,7 @@ extension BBSViewController:UICollectionViewDelegate,UICollectionViewDataSource 
             currentSelectPedia = indexPath.item
             collectionView.reloadData()
             currentPage = 0
-            loadListData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
+            BBSListProvider.loadTopicData(BBSListProvider.ClassIds[currentSelectPedia], page:currentPage) {
                 topics in
                 self.activityIndicator.hidden = true
                 self.currentDataSource = topics

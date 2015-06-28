@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PediaListProvider {
+class BBSListProvider {
     
     static let pageSize = 10
     
@@ -16,8 +16,7 @@ class PediaListProvider {
     static var ClassIds = [1,2,3,4,5,6,7]
     
     class func loadClasses() {
-        //dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/class?sortby=pos&order=asc&query=type:0"))
+            var url = NSURL(string:GetUrl("/class?sortby=pos&order=asc&query=type:1"))
             //获取JSON数据
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
             if data != nil {
@@ -43,49 +42,15 @@ class PediaListProvider {
                     self.ClassIds = classidList
                 }
             }
-        //}
     }
     
-    class func loadPediaData(index: Int, page:Int, completion:([Subject] -> Void)) {
-        var dataList:[Subject] = []
-        dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/subject?offset=\(page*self.pageSize)&limit=\(self.pageSize)&query=classid:\(index)&sortby=id&order=desc"))
-            /*
-            if index == 1 {
-                url = NSURL(string:GetUrl("/subject?offset=\(page*self.pageSize)&limit=\(self.pageSize)&query=isrcmmd:1&sortby=id&order=desc"))
-            }
-*/
-            //获取JSON数据
-            var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
-            if data != nil {
-                var json:AnyObject = NSJSONSerialization.JSONObjectWithData(data!,options:NSJSONReadingOptions.AllowFragments,error:nil)!
-            
-                //解析获取JSON字段值
-                var errcode:NSNumber = json.objectForKey("errcode") as! NSNumber //json结构字段名。
-                var errmsg:String? = json.objectForKey("errmsg") as? String
-                var retdata:NSArray? = json.objectForKey("data") as? NSArray
-                //NSLog("errcode:\(errcode) errmsg:\(errmsg) data:\(retdata)")
-            
-                if errcode == 0 && retdata != nil {
-                    var list = retdata!
-                    var len = list.count-1
-                    for i in 0...len {
-                        var subject = Subject(data: list[i])
-                        dataList.append(subject)
-                    }
-                }
-            }
-            dispatch_async(dispatch_get_main_queue()) {
-                completion(dataList)
-            }
-        }
-    }
+    // MARK: load data
     
-    class func searchData(query: String, page:Int, completion:([Subject] -> Void)) {
-        var dataList:[Subject] = []
+    class func loadTopicData(index: Int, page:Int, completion:([Topic] -> Void)) {
         dispatch_async(dispatch_get_global_queue(0, 0)) {
-            var url = NSURL(string:GetUrl("/subject?offset=\(page*self.pageSize)&limit=\(self.pageSize)&query=title.contains:\(query)"))
+            var url = NSURL(string:GetUrl("/topic?offset=\(page*self.pageSize)&limit=\(self.pageSize)&query=classid:\(index)&sortby=id&order=desc"))
             //获取JSON数据
+            var dataList:[Topic] = []
             var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
             if data != nil {
                 var json:AnyObject = NSJSONSerialization.JSONObjectWithData(data!,options:NSJSONReadingOptions.AllowFragments,error:nil)!
@@ -100,7 +65,7 @@ class PediaListProvider {
                     var list = retdata!
                     var len = list.count-1
                     for i in 0...len {
-                        var subject = Subject(data: list[i])
+                        var subject = Topic(data: list[i])
                         dataList.append(subject)
                     }
                 }
