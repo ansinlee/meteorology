@@ -112,7 +112,7 @@ class BBSViewController: UITableViewController {
     @IBAction func onRefresh(sender: UIRefreshControl) {
         if sender.refreshing {
             currentPage = 0
-            BBSListProvider.loadTopicData(PediaListProvider.ClassIds[currentSelectPedia], page:currentPage) {
+            BBSListProvider.loadTopicData(BBSListProvider.ClassIds[currentSelectPedia], page:currentPage) {
                 topics in
                 sender.endRefreshing()
                 self.currentDataSource = topics
@@ -206,7 +206,7 @@ class BBSViewController: UITableViewController {
     var isLoading = false
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         //println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(currentPage*10) \(self.currentDataSource.count) \(isLoading)")
-        if scrollView == tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (currentPage+1)*PediaListProvider.pageSize == self.currentDataSource.count && !isLoading {
+        if scrollView == tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (currentPage+1)*BBSListProvider.pageSize == self.currentDataSource.count && !isLoading {
             if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {
                 //println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
                 //footView.hidden = false

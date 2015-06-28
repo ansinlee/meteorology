@@ -172,10 +172,11 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource {
             var tmpHeight:CGFloat = 0
             for item in topic.Content!.ItemList! {
                 if item.Type! == .Text {
-                    tmpHeight += caculateLableHeight(item.Data!, fontSize: 18, showWidth: self.view.frame.width - 16)
+                    tmpHeight += caculateLableHeight(item.Data!, fontSize: 14, showWidth: self.view.frame.width - 32)
                 } else {
                     tmpHeight += 208
                 }
+                NSLog("topic detail height \(tmpHeight)")
             }
             return height + tmpHeight + 16
         }
@@ -236,13 +237,7 @@ extension BBSNewDetailViewController:UITableViewDelegate,UITableViewDataSource {
     
     // MARK: scrollview delagate
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-//         println("77777777 ")
-        
-        println("77777777 \(scrollView.contentSize.height - scrollView.frame.size.height): \(replyCurrentPage*10) \(self.replyListData.count) \(isLoading)")
-    
-        if (self.tableView != nil && scrollView == self.tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (self.replyCurrentPage)*PediaListProvider.pageSize == self.replyListData.count && !isLoading) {
-            //println("\(scrollView.contentOffset.y):\(scrollView.contentSize.height - scrollView.frame.size.height)")
+        if (self.tableView != nil && scrollView == self.tableView && scrollView.contentSize.height - scrollView.frame.size.height > 0 && (self.replyCurrentPage)*BBSListProvider.pageSize == self.replyListData.count && !isLoading) {
             if scrollView.contentOffset.y >  scrollView.contentSize.height - scrollView.frame.size.height + 44 {
                 self.loadReplyListData(true)
             }
