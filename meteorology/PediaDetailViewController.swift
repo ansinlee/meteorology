@@ -44,12 +44,12 @@ class PediaDetailViewController: UIViewController {
         self.title = "详情"
         
         // 添加主景
-        self.mainView = UIScrollView(frame: CGRect(x: -1, y: UIApplication.sharedApplication().statusBarFrame.height + self.navigationController!.navigationBar.frame.height, width: self.view.frame.width+2, height: self.view.frame.height - UIApplication.sharedApplication().statusBarFrame.height - self.navigationController!.navigationBar.frame.height - BottomNavBarHeight))
+        self.mainView = UIScrollView(frame: CGRect(x: -1, y: /*UIApplication.sharedApplication().statusBarFrame.height +*/ self.navigationController!.navigationBar.frame.height, width: self.view.frame.width+2, height: self.view.frame.height - UIApplication.sharedApplication().statusBarFrame.height - self.navigationController!.navigationBar.frame.height - BottomNavBarHeight))
 
         self.view.addSubview(self.mainView!)
         
         // 添加标题
-        self.titleLable = UILabel(frame: CGRect(x: self.border, y: self.border, width: self.mainView!.frame.width - self.border*2, height: self.caculateLableHeight(self.textStartSpace + self.subject!.Title! , fontSize: CGFloat(self.titleFontSize), showWidth: self.mainView!.frame.width - self.border*4)))
+        self.titleLable = UILabel(frame: CGRect(x: self.border, y: self.border*2, width: self.mainView!.frame.width - self.border*2, height: self.caculateLableHeight(self.textStartSpace + self.subject!.Title! , fontSize: CGFloat(self.titleFontSize), showWidth: self.mainView!.frame.width - self.border*4)))
         self.titleLable?.lineBreakMode = NSLineBreakMode.ByCharWrapping
         self.titleLable?.numberOfLines = 0
         self.titleLable?.font = self.titleLable!.font.fontWithSize(self.titleFontSize)
