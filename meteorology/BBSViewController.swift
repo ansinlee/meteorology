@@ -142,7 +142,7 @@ class BBSViewController: UITableViewController {
         self.refreshControl?.endRefreshing()
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
-        if currentSelectPedia < PediaListProvider.Classes.count - 1 {
+        if currentSelectPedia < BBSListProvider.Classes.count - 1 {
             currentSelectPedia++
             collectionView.reloadData()
             currentPage = 0
@@ -258,7 +258,7 @@ extension BBSViewController {
 
 extension BBSViewController:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PediaListProvider.Classes.count
+        return BBSListProvider.Classes.count
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -280,7 +280,7 @@ extension BBSViewController:UICollectionViewDelegate,UICollectionViewDataSource 
                 label!.textAlignment = .Center
                 cell.addSubview(label!)
             }
-            label!.text = PediaListProvider.Classes[indexPath.item]
+            label!.text = BBSListProvider.Classes[indexPath.item]
             if currentSelectPedia == indexPath.item {
                 label!.font = UIFont.boldSystemFontOfSize(16)
                 underLine?.hidden = false

@@ -488,7 +488,7 @@
                         <viewControllerLayoutGuide type="top" id="vuV-49-DGB"/>
                         <viewControllerLayoutGuide type="bottom" id="E4n-vm-7EA"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gRr-Nc-1Gg">
+                    <view key="view" contentMode="center" id="gRr-Nc-1Gg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
