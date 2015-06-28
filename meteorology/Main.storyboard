@@ -414,7 +414,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7Hz-4D-Rnr" kind="show" id="IGZ-aq-R1G"/>
+                                            <segue destination="fcQ-wj-T5a" kind="show" id="dbE-Fc-ETa"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -481,6 +481,36 @@
             <point key="canvasLocation" x="215" y="1364"/>
         </scene>
         <!--关于-->
+        <scene sceneID="rsC-tc-gW8">
+            <objects>
+                <viewController id="fcQ-wj-T5a" userLabel="关于" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MhK-CX-WsD"/>
+                        <viewControllerLayoutGuide type="bottom" id="PhP-IH-4QQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uhb-ON-ams">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="abortme.png" translatesAutoresizingMaskIntoConstraints="NO" id="XGY-fC-Ega">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="XGY-fC-Ega" secondAttribute="trailing" id="5l4-aA-Qnk"/>
+                            <constraint firstAttribute="bottom" secondItem="XGY-fC-Ega" secondAttribute="bottom" constant="49" id="RT7-HV-tIE"/>
+                            <constraint firstItem="XGY-fC-Ega" firstAttribute="leading" secondItem="Uhb-ON-ams" secondAttribute="leading" id="jba-ZY-pIx"/>
+                            <constraint firstItem="XGY-fC-Ega" firstAttribute="top" secondItem="Uhb-ON-ams" secondAttribute="top" constant="64" id="m9D-My-Hqn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="关于" id="ESp-MM-WHE" userLabel="我"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTn-Od-Vqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-668" y="1502"/>
+        </scene>
+        <!--关于-->
         <scene sceneID="ZLe-40-MkM">
             <objects>
                 <viewController id="7Hz-4D-Rnr" userLabel="关于" sceneMemberID="viewController">
@@ -492,9 +522,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y5v-CI-Wcv">
-                                <rect key="frame" x="96" y="83" width="128" height="128"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="© 2015 阜阳市气象局 版权所有" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aol-hR-w5U">
+                                <rect key="frame" x="62" y="485" width="196" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="气象互动百科" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7IE-LV-cM7">
                                 <rect key="frame" x="80" y="224" width="110" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -514,20 +547,18 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="3"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="© 2015 阜阳市气象局 版权所有" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aol-hR-w5U">
-                                <rect key="frame" x="62" y="485" width="196" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y5v-CI-Wcv">
+                                <rect key="frame" x="96" y="78" width="128" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="关于" id="3RR-J3-ftT"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QvZ-fj-wHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-186" y="1364"/>
+            <point key="canvasLocation" x="-173" y="1430"/>
         </scene>
         <!--登录-->
         <scene sceneID="5HU-uO-HRg">
@@ -1413,6 +1444,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="abortme.png" width="638" height="904"/>
         <image name="default" width="109" height="110"/>
         <image name="default_icon" width="220" height="220"/>
         <image name="logo.png" width="184" height="184"/>
