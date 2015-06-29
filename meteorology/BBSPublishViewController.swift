@@ -90,7 +90,12 @@ class BBSPublishViewController: UIViewController,UIActionSheetDelegate,UIImagePi
             abstract = (abstract as NSString).substringToIndex(50)
         }
         
-        // TODO: 从previewImageView里面拿到Image 上传
+        // TODO: imageData上传
+        
+        var imageData:NSData? = nil
+        if previewImageView.image != nil {
+            imageData = UIImagePNGRepresentation(previewImageView.image)
+        }
         
         var post = "{\"Content\":\"[{\\\"type\\\":0, \\\"data\\\":\\\"\(content)\\\"}]\", \"title\":\"\(title)\", \"abstract\":\"\(abstract)\", \"Classid\":\(self.selectPedia),  \"Pid\":0, \"Creatorid\":\(GetCurrentUser().Id!)}"
         var url = NSURL(string: GetUrl("/topic"))
