@@ -1207,7 +1207,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B9b-bl-APu">
-                                <rect key="frame" x="56" y="121" width="248" height="161.5"/>
+                                <rect key="frame" x="56" y="121" width="248" height="125.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="Z12-oG-hOI"/>
@@ -1240,6 +1240,22 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9x-fA-23b">
+                                <rect key="frame" x="130" y="254.5" width="60" height="30"/>
+                                <state key="normal" title="添加照片">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onChoosePhoto:" destination="7o0-Zj-bbN" eventType="touchUpInside" id="nLs-Pj-qA0"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yzs-rZ-yAS">
+                                <rect key="frame" x="16" y="250" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9Of-99-DJv"/>
+                                    <constraint firstAttribute="width" constant="40" id="t9d-CF-pQg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1252,11 +1268,16 @@
                             <constraint firstItem="fxW-Ui-TSj" firstAttribute="trailing" secondItem="0Hy-dw-i1A" secondAttribute="trailingMargin" id="Rgf-ri-rj2"/>
                             <constraint firstItem="xGe-ym-cO7" firstAttribute="top" secondItem="mOg-km-DLT" secondAttribute="bottom" constant="30" id="S8n-gJ-8wg"/>
                             <constraint firstItem="tdh-O4-rJy" firstAttribute="leading" secondItem="0Hy-dw-i1A" secondAttribute="leadingMargin" id="SPC-Ex-ayl"/>
+                            <constraint firstItem="iGe-vy-6yv" firstAttribute="top" secondItem="c9x-fA-23b" secondAttribute="bottom" constant="8.5" id="TmO-gd-rgC"/>
                             <constraint firstItem="tdh-O4-rJy" firstAttribute="top" secondItem="mOg-km-DLT" secondAttribute="bottom" constant="10" id="YIa-ia-WIq"/>
+                            <constraint firstAttribute="centerX" secondItem="c9x-fA-23b" secondAttribute="centerX" id="aMa-KV-sM7"/>
                             <constraint firstItem="B9b-bl-APu" firstAttribute="top" secondItem="fxW-Ui-TSj" secondAttribute="bottom" constant="20" id="bLx-Jm-Udt"/>
                             <constraint firstItem="iGe-vy-6yv" firstAttribute="trailing" secondItem="0Hy-dw-i1A" secondAttribute="trailingMargin" id="cwD-KM-e7i"/>
-                            <constraint firstItem="iGe-vy-6yv" firstAttribute="top" secondItem="B9b-bl-APu" secondAttribute="bottom" constant="10" id="kZb-vI-2Sw"/>
+                            <constraint firstItem="yzs-rZ-yAS" firstAttribute="leading" secondItem="0Hy-dw-i1A" secondAttribute="leadingMargin" id="fip-ng-EJ4"/>
+                            <constraint firstItem="yzs-rZ-yAS" firstAttribute="centerY" secondItem="c9x-fA-23b" secondAttribute="centerY" constant="0.5" id="ggg-II-8Wb"/>
+                            <constraint firstItem="iGe-vy-6yv" firstAttribute="top" secondItem="B9b-bl-APu" secondAttribute="bottom" constant="60" id="kZb-vI-2Sw"/>
                             <constraint firstItem="B9b-bl-APu" firstAttribute="trailing" secondItem="0Hy-dw-i1A" secondAttribute="trailingMargin" id="mTK-yp-983"/>
+                            <constraint firstItem="c9x-fA-23b" firstAttribute="top" secondItem="B9b-bl-APu" secondAttribute="bottom" constant="8" id="nz6-9v-q7F"/>
                             <constraint firstAttribute="bottomMargin" secondItem="iGe-vy-6yv" secondAttribute="bottom" constant="275" id="pqv-Ew-0fn"/>
                             <constraint firstItem="mOg-km-DLT" firstAttribute="leading" secondItem="0Hy-dw-i1A" secondAttribute="leadingMargin" id="qVd-lO-1wh"/>
                             <constraint firstItem="fxW-Ui-TSj" firstAttribute="top" secondItem="RZF-9K-GQn" secondAttribute="bottom" constant="20" id="ueS-N6-vHl"/>
@@ -1264,6 +1285,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="kZb-vI-2Sw"/>
                                 <exclude reference="Kla-yH-kWN"/>
                             </mask>
                         </variation>
@@ -1277,6 +1299,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="previewImageView" destination="yzs-rZ-yAS" id="XIN-Et-ybH"/>
                         <outlet property="textView" destination="B9b-bl-APu" id="ahf-0o-cQc"/>
                         <outlet property="titleLabel" destination="fxW-Ui-TSj" id="YxC-Ko-3kH"/>
                     </connections>

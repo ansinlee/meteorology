@@ -8,14 +8,17 @@
 //
 
 import UIKit
+import PhotosUI
 
-class BBSPublishViewController: UIViewController {
+class BBSPublishViewController: UIViewController,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     var selectPedia:Int = 0
 
     @IBOutlet weak var textView: UITextView!
     
     @IBOutlet weak var titleLabel: UITextField!
+    
+    @IBOutlet weak var previewImageView: UIImageView!
     
     var loadPublishFinish = false
     
@@ -39,6 +42,38 @@ class BBSPublishViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    @IBAction func onChoosePhoto(sender: AnyObject) {
+        UIActionSheet(title: "照片", delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles:"拍摄照片","从相册选择").showInView(view)
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 0 {
+            return;
+        }
+        let imagePicker = UIImagePickerController()
+        if buttonIndex == 1 {
+            imagePicker.sourceType = .Camera
+        } else if buttonIndex == 2 {
+            imagePicker.sourceType = .PhotoLibrary
+        }
+        imagePicker.delegate = self
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        let orginimage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        var size = CGSize(width: orginimage.size.width/8, height: orginimage.size.height/8)
+        UIGraphicsBeginImageContext(size)
+        orginimage.drawInRect(CGRect(origin: CGPointZero, size: size))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        previewImageView.image = image
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if loadPublishFinish == true {
@@ -54,6 +89,8 @@ class BBSPublishViewController: UIViewController {
         if (abstract.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)>50) {
             abstract = (abstract as NSString).substringToIndex(50)
         }
+        
+        // TODO: 从previewImageView里面拿到Image 上传
         
         var post = "{\"Content\":\"[{\\\"type\\\":0, \\\"data\\\":\\\"\(content)\\\"}]\", \"title\":\"\(title)\", \"abstract\":\"\(abstract)\", \"Classid\":\(self.selectPedia),  \"Pid\":0, \"Creatorid\":\(GetCurrentUser().Id!)}"
         var url = NSURL(string: GetUrl("/topic"))

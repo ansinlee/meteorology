@@ -35,6 +35,7 @@
 		3D7843471B3FE38800A22942 /* abortme.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D7843461B3FE38800A22942 /* abortme.png */; };
 		3D92BB181ACFDD28002C5E3B /* BBSTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB171ACFDD28002C5E3B /* BBSTopic.swift */; };
 		3D92BB1A1ACFDD35002C5E3B /* PediaSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */; };
+		A90974501B41ACAA000E96D2 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A909744F1B41ACAA000E96D2 /* PhotosUI.framework */; };
 		A918472E1B3AAEF400972B71 /* UIViewController+KeyboardAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A918472D1B3AAEF400972B71 /* UIViewController+KeyboardAdditions.m */; };
 		A9B97E9C1B331F3A00F2F736 /* BBSPublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */; };
 		B6B1F6EE1B33359000898AE8 /* BBSNewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1F6ED1B33359000898AE8 /* BBSNewDetailViewController.swift */; };
@@ -89,6 +90,7 @@
 		3D92BB191ACFDD35002C5E3B /* PediaSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PediaSubject.swift; sourceTree = "<group>"; };
 		8B57159E3803D7A74D439B72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9100818C2120C9685DEDC22B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A909744F1B41ACAA000E96D2 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		A918472C1B3AAEF400972B71 /* UIViewController+KeyboardAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KeyboardAdditions.h"; sourceTree = "<group>"; };
 		A918472D1B3AAEF400972B71 /* UIViewController+KeyboardAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KeyboardAdditions.m"; sourceTree = "<group>"; };
 		A9B97E9B1B331F3A00F2F736 /* BBSPublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSPublishViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A90974501B41ACAA000E96D2 /* PhotosUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +132,7 @@
 		29C7059F8FBA0EC4E0B7B0FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A909744F1B41ACAA000E96D2 /* PhotosUI.framework */,
 				8B57159E3803D7A74D439B72 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -306,6 +310,7 @@
 		3D3A5B4E1AB70F4B00BBD67F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = LeeAnsin;
 				TargetAttributes = {
